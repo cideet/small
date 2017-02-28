@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>二叉数</title>
+</head>
+<body>
+
+<script>
+
+    function sortNumber(a, b) {
+        return a - b;
+    }
+    function deleteSame(arr) {
+        var o = [];
+        for (var i = 0; i < arr.length; i++) {
+            if (o.indexOf(arr[i]) == -1) {
+                o.push(arr[i]);
+            }
+        }
+        return o;
+    }
+    function MathRandom(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+    function Node(data, left, right) {
+        this.data = data;
+        this.left = left;
+        this.right = right;
+    }
+    function TwoChildTree() {
+        this.root = null;
+        this.insert = function (data) {
+            var n = new Node(data, null, null);
+            if (this.root == null) {
+                this.root = n;
+            } else {
+                var current = this.root;
+                var parent;
+                while (current) {
+                    parent = current;
+                    if (data < current.data) {
+                        current = current.left;
+                        if (current == null) {
+                            parent.left = n;
+                            break;
+                        }
+                    } else {
+                        current = current.right;
+                        if (current == null) {
+                            parent.right = n;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    var nLength = MathRandom(3, 8);
+    var tArray = [];
+    for (var i = 0; i < nLength; i++) {
+        tArray[i] = MathRandom(1, 1000);
+    }
+    var targetArray = deleteSame(tArray.sort(sortNumber));
+    console.log(targetArray);
+
+    var randowOrder = MathRandom(0, targetArray.length);
+    var randowData = targetArray[randowOrder];
+    var nums = new TwoChildTree();
+    nums.insert(randowData);
+    for (var i = 0; i < targetArray.length; i++) {
+        if (targetArray[i] == randowData) {
+            continue;
+        } else {
+            nums.insert(targetArray[i]);
+        }
+    }
+    console.log(nums);
+
+</script>
+
+</body>
+</html>
