@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <title>大家一起来学Object</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+
+<h3>面向对向编程一：封装</h3>
+<h4>一、生成实例对象的原始模式</h4>
+<script>
+    var CatA = {name: '', color: ''};
+    var cat1 = {name: '大毛', color: '黄色'};
+    var cat2 = {name: '小毛', color: '黑色'};
+    document.write(JSON.stringify(cat1));
+    document.write(JSON.stringify(cat2));
+</script>
+<p>此为对象最简单的封装，就是把两个属性封装在一个对象里面。</p>
+<p>两个缺点：生成多个实例比较麻烦，实例和原型之间看不出任何联系。</p>
+
+<h4>原始模式的改进</h4>
+<p>写一个函数，解决代码重复的问题</p>
+<script>
+    function CatB(name, color) {
+        return {name: name, color: color};
+    }
+    var cat1 = CatB("大明", "黑色");
+    var cat2 = CatB("小黄", "黄色");
+    document.write(JSON.stringify(cat1));
+    document.write(JSON.stringify(cat2));
+</script>
+<p>问题依然是，cat1和cat2之间没有内在的联系，不能反映它们是同一个原型对象的实例。</p>
+
+<h4>构造函数模式Constructor</h4>
+<p>为了解决从原型对象生成实例的问题，JS提供了一个构造函数模式。</p>
+<p>所谓构造函数，就是一个普通函数，但内部使用了this变量。</p>
+<p>对构造函数使用new运算符，就能生成实例，并且this变量会绑定在实例对象上。</p>
+<script>
+    function CatC(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+    var cat1 = new CatC("大毛", "黑色");
+    var cat2 = new CatC("小黄", "黄色");
+    document.write(JSON.stringify(cat1));
+    document.write(JSON.stringify(cat2));
+    document.write("<p>cat1.constructor: " + cat1.constructor + "</p>");
+    document.write("cat1 instanceof CatC: " + (cat1 instanceof CatC));
+</script>
+
+<h4>构造函数的问题</h4>
+<p>构造函数很好用，但存在一个浪费内存的问题。</p>
+<script>
+    function CatD(name, color) {
+        this.name = name;
+        this.color = color;
+        this.type = '猫科动物';
+        this.eat = function () {
+            document.write('<p>' + this.name + '吃老鼠</p>');
+        };
+    }
+    var cat1 = new CatD("大明", "黄色");
+    document.write(JSON.stringify(cat1));
+    cat1.eat();
+    var cat2 = new CatD("小黄", "黄色");
+    document.write(JSON.stringify(cat2));
+    cat2.eat();
+    document.write('<span class="red">cat1.eat==cat2.eat: ' + (cat1.eat == cat2.eat) + '</span>');
+</script>
+<p>问题在于，每个实例中的type属性和eat()方法都是一样的，每次生成实例，都必须为重复的内容，内存占用大。</p>
+<p>能不能让type和eat()只在内存中生成一次，然后所有实例都指向那个内存地址呢？</p>
+<p>那么，就学习如下的Prototype模式</p>
+
+<h4>Prototype模式</h4>
+<p>JS规定，每一个构造函数都有一个prototype属性，指向另一个对象。这个对象的所有属性和方法，都会被构造函数的实例继承。</p>
+<p>我们可以把那些不变的属性和方法，直接定义在prototype对象上。</p>
+<script>
+    function CatE(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+    CatE.prototype.type = "猫科动物";
+    CatE.prototype.eat = function () {
+        document.write('<p>' + this.name + '吃老鼠</p>');
+    }
+    var cat1 = new CatE("大明", "黄色");
+    document.write(JSON.stringify(cat1));
+    cat1.eat();
+    var cat2 = new CatE("大黄", "黄色");
+    document.write(JSON.stringify(cat2));
+    cat2.eat();
+    document.write('<span class="red">cat1.eat==cat2.eat: ' + (cat1.eat == cat2.eat) + '</span>');
+</script>
+
+<h4>Prototype模式的验证方法</h4>
+<p>isPrototypeOf() 用来判断某个prototype对象和某个实例之间的关系</p>
+<script>
+    var a = CatE.prototype.isPrototypeOf(cat1);
+    document.write('CatE.prototype.isPrototypeOf(cat1): ' + a);
+</script>
+
+<p>hasOwnProperty() 用来判断某一个属性是本地属性，还是继承自prototype对象的属性。</p>
+<!--<script>-->
+<!--var a = cat1.hasOwnProperty('name');-->
+<!--var b = cat1.hasOwnProperty('type');-->
+<!--document.write("<p>cat1.hasOwnProperty('name'): " + a + "</p>");-->
+<!--document.write("<p>cat1.hasOwnProperty('type'): " + a + "</p>");-->
+<!--</script>-->
+<p>学完后面的章节，再回过头来看看。</p>
+
+<p>in运算符 用来判断某个实例是否含有某个属性。</p>
+<script>
+    document.write("'name' in cat1 : " + ('name' in cat1));
+    for (var prop in cat1) {
+        document.write("<p>" + prop + " : " + cat1[prop] + "</p>");
+    }
+</script>
+
+<h3>面向对象二：构造函数的继承</h3>
+<script>
+    function Animal() {
+        this.species = '动物';
+    }
+</script>
+<p>比如已经有了一个“动物”对象的构造函数，如果让一个“猫”继承呢？</p>
+
+<h4>一、构造函数绑定</h4>
+<p>使用call或apply方法，将父对象的构造函数绑定在子对象上。</p>
+<script>
+    function CatF(name, color) {
+        Animal.apply(this, arguments);
+        this.name = name;
+        this.color = color;
+    }
+    var cat1 = new CatF("大明", "黑色");
+    document.write(JSON.stringify(cat1) + "<br/>");
+    // {"species":"动物","name":"大明","color":"黑色"}
+</script>
+
+<script>
+    function CatF(name, color) {
+        Animal.call(this, arguments);
+        this.name = name;
+        this.color = color;
+    }
+    var cat1 = new CatF("大明", "黑色");
+    document.write(JSON.stringify(cat1) + '<br>');
+    // {"species":"动物","name":"大明","color":"黑色"}
+    document.write('cat1.hasOwnProperty("species"): ' + cat1.hasOwnProperty("species"));
+</script>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        width: 90%;
+        margin: 10px 5%;
+        font-size: 12px;
+        color: #111111;
+        line-height: 25px;
+    }
+
+    h3 {
+        font-size: 16px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    p {
+        color: #666666;
+    }
+
+    .red {
+        color: red;
+        font-weight: bolder;
+    }
+</style>
+
+</body>
+</html>
