@@ -87,7 +87,7 @@
     CatE.prototype.type = "猫科动物";
     CatE.prototype.eat = function () {
         document.write('<p>' + this.name + '吃老鼠</p>');
-    }
+    };
     var cat1 = new CatE("大明", "黄色");
     document.write(JSON.stringify(cat1));
     cat1.eat();
@@ -98,13 +98,15 @@
 </script>
 
 <h4>Prototype模式的验证方法</h4>
-<p>isPrototypeOf() 用来判断某个prototype对象和某个实例之间的关系</p>
+<h5>isPrototypeOf()</h5>
+<p>用来判断某个prototype对象和某个实例之间的关系</p>
 <script>
     var a = CatE.prototype.isPrototypeOf(cat1);
     document.write('CatE.prototype.isPrototypeOf(cat1): ' + a);
 </script>
 
-<p>hasOwnProperty() 用来判断某一个属性是本地属性，还是继承自prototype对象的属性。</p>
+<h5>hasOwnProperty()</h5>
+<p>用来判断某一个属性是本地属性，还是继承自prototype对象的属性。</p>
 <!--<script>-->
 <!--var a = cat1.hasOwnProperty('name');-->
 <!--var b = cat1.hasOwnProperty('type');-->
@@ -113,11 +115,12 @@
 <!--</script>-->
 <p>学完后面的章节，再回过头来看看。</p>
 
-<p>in运算符 用来判断某个实例是否含有某个属性。</p>
+<h5>in运算符</h5>
+<p>用来判断某个实例是否含有某个属性。</p>
 <script>
     document.write("'name' in cat1 : " + ('name' in cat1));
     for (var prop in cat1) {
-        document.write("<p>" + prop + " : " + cat1[prop] + "</p>");
+        document.write("<div>" + prop + " : " + cat1[prop] + "</div>");
     }
 </script>
 
@@ -126,6 +129,13 @@
     function Animal() {
         this.species = '动物';
     }
+    Animal.prototype.eye = true;
+    Animal.prototype.eat = function () {
+        return this.species + '需要吃东西';
+    };
+    var a = new Animal();
+    console.log(a);                         //原型__proto__里面有货
+    document.write(JSON.stringify(a));      // {"species":"动物"}
 </script>
 <p>比如已经有了一个“动物”对象的构造函数，如果让一个“猫”继承呢？</p>
 
@@ -143,16 +153,133 @@
 </script>
 
 <script>
-    function CatF(name, color) {
+    function CatG(name, color) {
         Animal.call(this, arguments);
         this.name = name;
         this.color = color;
     }
-    var cat1 = new CatF("大明", "黑色");
+    var cat1 = new CatG("大明", "黑色");
     document.write(JSON.stringify(cat1) + '<br>');
     // {"species":"动物","name":"大明","color":"黑色"}
     document.write('cat1.hasOwnProperty("species"): ' + cat1.hasOwnProperty("species"));
 </script>
+
+<h4>二、prototype模式</h4>
+<script>
+    function CatH(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+    CatH.prototype = new Animal();
+    CatH.prototype.constructor = CatH;
+    console.log(CatH);
+    var cat1 = new CatH("大毛", "白色");
+    for (var prop in cat1) {
+        document.write("<div>" + prop + " : " + cat1[prop] + "</div>");
+    }
+</script>
+<p>继承的属性和方法，全在__proto__上。</p>
+<script>
+    document.write(cat1.eat());
+</script>
+
+<h4>三、直接继承prototype</h4>
+<script>
+    function Animal2() {
+    }
+    Animal2.prototype.species = '动物2';
+    function CatI(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+    CatI.prototype = Animal2.prototype;
+    var cat1 = new CatI("一毛", "黄色");
+    for (var prop in cat1) {
+        document.write("<div>" + prop + " : " + cat1[prop] + "</div>");
+    }
+</script>
+<p>将子类的prototype对象，指向父类的prototype对象，这样就完成了继承。</p>
+<p>好处是比较省内存，坏处是子类和父类的prototype都指向了同一个对象，改变其一均改变。</p>
+
+<h4>利用空对象作为中介</h4>
+<script>
+    function Animal3() {
+    }
+    Animal3.prototype.species = '动物3';
+    var F = function () {   //空对象
+    };
+    F.prototype = Animal3.prototype;
+    function CatJ(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+    CatJ.prototype = new F();
+    CatJ.prototype.constructor = CatJ;
+    var cat1 = new CatJ("大黄", "灰色");
+    for (var prop in cat1) {
+        document.write("<div>" + prop + " : " + cat1[prop] + "</div>");
+    }
+</script>
+
+<h4>利用空对象作为中介（封装成函数）</h4>
+<script>
+    function extend(Child, Parent) {
+        var F = function () {
+        };
+        F.prototype = Parent.prototype;
+        Child.prototype = new F();
+        Child.prototype.constructor = Child;
+        Child.uber = Parent.prototype;  //子对象上打开一条通道，可以直接调用父对象的方法
+    }
+</script>
+<script>
+    function Animal4() {
+    }           //父类
+    Animal4.prototype.species = '动物4';
+    function CatK(name, color) {    //子类
+        this.name = name;
+        this.color = color;
+    }
+    extend(CatK, Animal4);           //子类继承父类
+    var cat1 = new CatK("小丁", "黄色");
+    for (var prop in cat1) {
+        document.write("<div>" + prop + " : " + cat1[prop] + "</div>");
+    }
+</script>
+
+<h4>拷贝继承</h4>
+<script>
+    function Animal5() {      //父类
+        this.a = 'a';
+        this.b = function () {
+            return ('b');
+        }
+    }
+    Animal5.prototype.c = 'c';
+    Animal5.prototype.d = function () {
+        return ('d');
+    };
+    var cat1 = new Animal5();
+    for (var prop in cat1) {
+        document.write("<div>" + prop + " : " + cat1[prop] + "</div>");
+    }
+    function extend2(Child, Parent) {       //对象拷贝函数2
+        var p = Parent.prototype;
+        var c = Child.prototype;
+        for(var i in p){
+            c[i] = p[i];
+        }
+        c.uber = p;
+    }
+
+    function CatL(){}
+    extend2(CatL,Animal5);
+    var cat1 = new CatL();
+    for (var prop in cat1) {
+        document.write("<div>" + prop + " : " + cat1[prop] + "</div>");
+    }
+</script>
+<p>不是prototype，没有拷贝</p>
 
 
 <style>
@@ -163,22 +290,41 @@
 
     body {
         width: 90%;
-        margin: 10px 5%;
+        margin: 10px 5% 30px 5%;
         font-size: 12px;
-        color: #111111;
+        color: #666666;
         line-height: 25px;
     }
 
     h3 {
         font-size: 16px;
+        border-top: 1px solid #666666;
+        padding-top: 20px;
+        margin-top: 20px;
+        color: #111111;
+    }
+
+    h3:first-child {
+        border: none;
+        padding-top: 10px;
+        margin: 0;
     }
 
     h4 {
         font-size: 14px;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        margin-top: 10px;
+        color: #111111;
+    }
+
+    h5 {
+        color: #111111;
+        font-size: 12px;
     }
 
     p {
-        color: #666666;
+        color: #111111;
     }
 
     .red {
