@@ -5,7 +5,7 @@
     <title>大家一起来学Object</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--<meta http-equiv="X-UA-Compatible" content="IE=edge">-->
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 </head>
@@ -266,20 +266,80 @@
     function extend2(Child, Parent) {       //对象拷贝函数2
         var p = Parent.prototype;
         var c = Child.prototype;
-        for(var i in p){
+        for (var i in p) {
             c[i] = p[i];
         }
         c.uber = p;
     }
 
-    function CatL(){}
-    extend2(CatL,Animal5);
+    function CatL() {
+    }
+    extend2(CatL, Animal5);
     var cat1 = new CatL();
     for (var prop in cat1) {
         document.write("<div>" + prop + " : " + cat1[prop] + "</div>");
     }
 </script>
 <p>不是prototype，没有拷贝</p>
+
+<h3>面向对象三、非构造函数的继承</h3>
+<h4>什么是“非构造函数”的继承</h4>
+<script>
+    var Chinese = {
+        nation: '中国'
+    }
+    var Doctor = {
+        career: '医生'
+    }
+</script>
+<p>怎么让“医生”去继承“中国人”呢？</p>
+
+<h4>object()方法</h4>
+<script>
+    function object(o) {
+        function F() {
+        }
+
+        F.prototype = o;
+        return new F();
+    }
+    var Doctor2 = object(Chinese);
+    Doctor2.career = '医生';
+    console.log(Doctor2);
+    for (var prop in Doctor2) {
+        document.write(prop + ' : ' + Doctor2[prop] + "<br>");
+    }
+</script>
+
+<h4>浅拷贝</h4>
+<script>
+    function extendCopy(p) {
+        var c = {};
+        for (var i in p) {
+            c[i] = p[i];
+        }
+        c.uber = p;
+        return c;
+    }
+</script>
+<script>
+    var Doctor3 = extendCopy(Chinese);
+    Doctor3.career = '医生';
+    console.log(Doctor3);
+    for (var prop in Doctor3) {
+        document.write(prop + ' : ' + Doctor3[prop] + "<br>");
+    }
+</script>
+<p>浅拷贝存在的问题：如果父对象的属性是数组或对象，那么子对象获得的只是一个内存地址。</p>
+<script>
+    Chinese.birthPlace = ['北京','上海','香港'];
+    var Doctor4 = extendCopy(Chinese);
+    for (var prop in Doctor4) {
+        document.write(prop + ' : ' + Doctor4[prop] + "<br>");
+    }
+    document.write(typeof Doctor4.birthPlace);
+</script>
+
 
 
 <style>
