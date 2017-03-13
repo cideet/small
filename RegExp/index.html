@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <title>JS正则表达式</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+<h4>match</h4>
+<p>使用正则表达式模式对字符串执行查找，并将包含查找的结果作为数组返回。</p>
+<script>
+    (function MatchDemo() {
+        var r, re;
+        var s = 'The rain in Spain falls mainly in the plain';
+        re = /(a)in/img;
+        r = s.match(re);
+        document.write(JSON.stringify(r) + '<br>');
+    })();
+    // ["ain","ain","ain","ain"]
+</script>
+
+<h4>exec</h4>
+<p>用正则表达式模式在字符串中查找，并返回该查找结果的第一个值。</p>
+<script>
+    var src = 'http://sumsung753.blog.163.com/blog/I love you!';
+    var re = /\w+/img;
+    var arr;
+    while ((arr = re.exec(src)) != null) {
+        document.write(arr.index + ' : ' + arr + '<br>');
+    }
+    arr = re.exec(src)
+    document.write(JSON.stringify(arr) + '<br>');
+    console.log(arr);
+    for (var key in arr) {
+        document.write(key + '=>' + arr[key] + '<br>');
+    }
+</script>
+
+<br>
+
+<script>
+    function execDemo() {
+        var r, re; // 声明变量。
+        var s = "The rain in Spain falls mainly in the plain";
+        re = /[\w]*(ai)n/ig;
+        r = re.exec(s);
+        document.write(r + "<br/>");
+        for (key in r) {
+            document.write(key + "-" + r[key] + "<br/>");
+        }
+    }
+    window.onload = execDemo();
+</script>
+
+<h4>test</h4>
+<p>返回一个boolean值，指出在被查找的字符串中是否匹配到指定的正则表达式。</p>
+<script>
+    function TestDemo(re, s) {
+        var s1;
+        if (re.test(s)) {
+            s1 = '匹配正则式';
+        } else {
+            s1 = '不匹配正则式';
+        }
+        document.write('"' + s + '"' + s1 + '"' + re + '"');
+    }
+    TestDemo(/ab/, 'cdef');
+</script>
+
+<h4>search</h4>
+<p>返回与正则表达式查找内容匹配的第一个子字符串的位置。</p>
+<script>
+    function SearchDemo(){
+        var str = "The rain in Spain falls mainly in the plain.";
+        var re = /falls11/i;
+        var r = str.search(re);
+        document.write(r);
+    }
+    SearchDemo();
+</script>
+
+<br><br>
+
+<p><a href="http://www.jb51.net/article/28007.htm">原教程地址</a></p>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        width: 90%;
+        margin: 10px 5% 30px 5%;
+        font-size: 12px;
+        color: #666666;
+        line-height: 25px;
+    }
+
+    h3 {
+        font-size: 16px;
+        border-top: 1px solid #666666;
+        padding-top: 20px;
+        margin-top: 20px;
+        color: #111111;
+    }
+
+    h3:first-child {
+        border: none;
+        padding-top: 10px;
+        margin: 0;
+    }
+
+    h4 {
+        font-size: 14px;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        margin-top: 10px;
+        color: #111111;
+    }
+
+    h5 {
+        color: #111111;
+        font-size: 12px;
+    }
+
+    p {
+        color: #111111;
+    }
+
+    .red {
+        color: red;
+        font-weight: bolder;
+    }
+</style>
+</body>
+</html>
