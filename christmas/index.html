@@ -51,20 +51,20 @@
 
         .cloud1Anim {
             -webkit-animation-name: smallCloud;
-            -webkit-animation-duration: 30s;
-            -webkit-animation-iteration: infinite;
+            -webkit-animation-duration: 3s;
+            -webkit-animation-iteration-count: infinite;
             -moz-animation-name: smallCloud;
-            -moz-animation-duration: 30s;
-            -moz-animation-iteration: infinite;
+            -moz-animation-duration: 3s;
+            -moz-animation-iteration-count: infinite;
         }
 
         .cloud2Anim {
             -webkit-animation-name: largeCloud;
-            -webkit-animation-duration: 60s;
-            -webkit-animation-iteration: infinite;
+            -webkit-animation-duration: 6s;
+            -webkit-animation-iteration-count: infinite;
             -moz-animation-name: largeCloud;
-            -moz-animation-duration: 60s;
-            -moz-animation-iteration: infinite;
+            -moz-animation-duration: 6s;
+            -moz-animation-iteration-count: infinite;
         }
 
         @-webkit-keyframes smallCloud {
@@ -162,7 +162,7 @@
             boy.walkTo(2000, 0.2).then(function () {
                 // 第一次走路完成
                 // 开始页面滚动
-                scrollTo(5000, 1);
+                //scrollTo(5000, 1);
             }).then(function () {
                 // 第二次走路
                 return boy.walkTo(5000, 0.5);
