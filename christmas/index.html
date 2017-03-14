@@ -53,6 +53,11 @@
         var container = $("#content");
         var swipe = Swipe(container);
 
+        function scrollTo(time, proportionX) {
+            var distX = container.width() * proportionX;
+            swipe.scrollTo(distX, time);
+        }
+
         ////////////////////////////////////////////////////////
         //=================== 动画处理 ====================== //
         ////////////////////////////////////////////////////////
@@ -65,9 +70,10 @@
         // 开始
         $("button:first").click(function () {
             // 开始第一次走路
-            boy.walkTo(2000, 0.8).then(function () {
-                //第一次走路完成
-                boy.setColoer('red')
+            boy.walkTo(2000, 0.2).then(function () {
+                scrollTo(5000, 1);
+            }).then(function(){
+                return boy.walkTo(5000, 0.5);
             })
         });
 
