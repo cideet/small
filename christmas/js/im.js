@@ -10,7 +10,7 @@
 /* jshint expr: true */
 
 ;
-(function(root, factory) {
+(function (root, factory) {
 
     if (typeof define === 'function' && define.amd) {
         define(['jquery'], factory);
@@ -20,7 +20,7 @@
         factory(root.jQuery);
     }
 
-}(this, function($) {
+}(this, function ($) {
 
     $.transit = {
         version: "0.9.12",
@@ -82,11 +82,11 @@
 
 
     var eventNames = {
-        'transition'       : 'transitionend',
-        'MozTransition'    : 'transitionend',
-        'OTransition'      : 'oTransitionEnd',
-        'WebkitTransition' : 'webkitTransitionEnd',
-        'msTransition'     : 'MSTransitionEnd'
+        'transition': 'transitionend',
+        'MozTransition': 'transitionend',
+        'OTransition': 'oTransitionEnd',
+        'WebkitTransition': 'webkitTransitionEnd',
+        'msTransition': 'MSTransitionEnd'
     };
 
     // 检测是否支持transitionend事件
@@ -149,12 +149,12 @@
     //
     $.cssHooks['transit:transform'] = {
         // The getter returns a `Transform` object.
-        get: function(elem) {
+        get: function (elem) {
             return $(elem).data('transform') || new Transform();
         },
 
         // The setter accepts a `Transform` object or a string.
-        set: function(elem, v) {
+        set: function (elem, v) {
             var value = v;
 
             if (!(value instanceof Transform)) {
@@ -189,10 +189,10 @@
     //     $("#hello").css({ filter: 'blur(10px)' });
     //
     $.cssHooks.filter = {
-        get: function(elem) {
+        get: function (elem) {
             return elem.style[support.filter];
         },
-        set: function(elem, value) {
+        set: function (elem, value) {
             elem.style[support.filter] = value;
         }
     };
@@ -207,10 +207,10 @@
         //     $("#hello").css({ transformOrigin: '0 0' });
         //
         $.cssHooks.transformOrigin = {
-            get: function(elem) {
+            get: function (elem) {
                 return elem.style[support.transformOrigin];
             },
-            set: function(elem, value) {
+            set: function (elem, value) {
                 elem.style[support.transformOrigin] = value;
             }
         };
@@ -221,11 +221,11 @@
         //     $("#hello").css({ transition: 'all 0 ease 0' });
         //
         $.cssHooks.transition = {
-            get: function(elem) {
+            get: function (elem) {
                 return elem.style[support.transition];
             },
-            set: function(elem, value) {
-              console.log(elem,value)
+            set: function (elem, value) {
+                console.log(elem, value)
                 elem.style[support.transition] = value;
             }
         };
@@ -284,10 +284,10 @@
         //     t.setFromString('scale', '2,4');
         //     // Same as set('scale', '2', '4');
         //
-        setFromString: function(prop, val) {
+        setFromString: function (prop, val) {
             var args =
                 (typeof val === 'string') ? val.split(',') :
-                (val.constructor === Array) ? val : [val];
+                    (val.constructor === Array) ? val : [val];
 
             args.unshift(prop);
 
@@ -299,7 +299,7 @@
         //
         //     t.set('scale', 2, 4);
         //
-        set: function(prop) {
+        set: function (prop) {
             var args = Array.prototype.slice.apply(arguments, [1]);
             if (this.setter[prop]) {
                 this.setter[prop].apply(this, args);
@@ -308,7 +308,7 @@
             }
         },
 
-        get: function(prop) {
+        get: function (prop) {
             if (this.getter[prop]) {
                 return this.getter[prop].apply(this);
             } else {
@@ -324,15 +324,15 @@
             //     .css({ rotate: "30deg" })
             //     .css({ rotate: "30deg" })
             //
-            rotate: function(theta) {
+            rotate: function (theta) {
                 this.rotate = unit(theta, 'deg');
             },
 
-            rotateX: function(theta) {
+            rotateX: function (theta) {
                 this.rotateX = unit(theta, 'deg');
             },
 
-            rotateY: function(theta) {
+            rotateY: function (theta) {
                 this.rotateY = unit(theta, 'deg');
             },
 
@@ -341,7 +341,7 @@
             //     .css({ scale: 9 })      //=> "scale(9,9)"
             //     .css({ scale: '3,2' })  //=> "scale(3,2)"
             //
-            scale: function(x, y) {
+            scale: function (x, y) {
                 if (y === undefined) {
                     y = x;
                 }
@@ -349,16 +349,16 @@
             },
 
             // ### skewX + skewY
-            skewX: function(x) {
+            skewX: function (x) {
                 this.skewX = unit(x, 'deg');
             },
 
-            skewY: function(y) {
+            skewY: function (y) {
                 this.skewY = unit(y, 'deg');
             },
 
             // ### perspectvie
-            perspective: function(dist) {
+            perspective: function (dist) {
                 this.perspective = unit(dist, 'px');
             },
 
@@ -368,11 +368,11 @@
             //     .css({ x: 4 })       //=> "translate(4px, 0)"
             //     .css({ y: 10 })      //=> "translate(4px, 10px)"
             //
-            x: function(x) {
+            x: function (x) {
                 this.set('translate', x, null);
             },
 
-            y: function(y) {
+            y: function (y) {
                 this.set('translate', null, y);
             },
 
@@ -381,7 +381,7 @@
             //
             //     .css({ translate: '2, 5' })    //=> "translate(2px, 5px)"
             //
-            translate: function(x, y) {
+            translate: function (x, y) {
                 if (this._translateX === undefined) {
                     this._translateX = 0;
                 }
@@ -401,15 +401,15 @@
         },
 
         getter: {
-            x: function() {
+            x: function () {
                 return this._translateX || 0;
             },
 
-            y: function() {
+            y: function () {
                 return this._translateY || 0;
             },
 
-            scale: function() {
+            scale: function () {
                 var s = (this.scale || "1,1").split(',');
                 if (s[0]) {
                     s[0] = parseFloat(s[0]);
@@ -423,7 +423,7 @@
                 return (s[0] === s[1]) ? s[0] : s;
             },
 
-            rotate3d: function() {
+            rotate3d: function () {
                 var s = (this.rotate3d || "0,0,0,0deg").split(',');
                 for (var i = 0; i <= 3; ++i) {
                     if (s[i]) {
@@ -440,9 +440,9 @@
 
         // ### parse()
         // Parses from a string. Called on constructor.
-        parse: function(str) {
+        parse: function (str) {
             var self = this;
-            str.replace(/([a-zA-Z0-9]+)\((.*?)\)/g, function(x, prop, val) {
+            str.replace(/([a-zA-Z0-9]+)\((.*?)\)/g, function (x, prop, val) {
                 self.setFromString(prop, val);
             });
         },
@@ -450,17 +450,17 @@
         // ### toString()
         // Converts to a `transition` CSS property string. If `use3d` is given,
         // it converts to a `-webkit-transition` CSS property string instead.
-        toString: function(use3d) {
+        toString: function (use3d) {
             var re = [];
 
             for (var i in this) {
                 if (this.hasOwnProperty(i)) {
                     // Don't use 3D transformations if the browser can't support it.
                     if ((!support.transform3d) && (
-                            (i === 'rotateX') ||
-                            (i === 'rotateY') ||
-                            (i === 'perspective') ||
-                            (i === 'transformOrigin'))) {
+                        (i === 'rotateX') ||
+                        (i === 'rotateY') ||
+                        (i === 'perspective') ||
+                        (i === 'transformOrigin'))) {
                         continue;
                     }
 
@@ -486,7 +486,7 @@
         } else if (queue) {
             self.queue(queue, fn);
         } else {
-            self.each(function() {
+            self.each(function () {
                 fn.call(this);
             });
         }
@@ -498,7 +498,7 @@
     function getProperties(props) {
         var re = [];
 
-        $.each(props, function(key) {
+        $.each(props, function (key) {
             key = $.camelCase(key); // Convert "text-align" => "textAlign"
             key = $.transit.propertyMap[key] || $.cssProps[key] || key;
             key = uncamel(key); // Convert back to dasherized
@@ -541,7 +541,7 @@
         // For more properties, add them this way:
         // "margin 200ms ease, padding 200ms ease, ..."
         var transitions = [];
-        $.each(props, function(i, name) {
+        $.each(props, function (i, name) {
             transitions.push(name + ' ' + attribs);
         });
 
@@ -574,7 +574,7 @@
     //       complete: function() { /* ... */ }
     //      });
     //
-    $.fn.transition = $.fn.transit = function(properties, duration, easing, callback) {
+    $.fn.transition = $.fn.transit = function (properties, duration, easing, callback) {
         var self = this;
         var delay = 0;
         var queue = true;
@@ -648,7 +648,7 @@
 
         // If there's nothing to do...
         if (i === 0) {
-            var fn = function(next) {
+            var fn = function (next) {
                 self.css(theseProperties);
                 if (callback) {
                     callback.apply(self);
@@ -665,17 +665,17 @@
         // Save the old transitions of each element so we can restore it later.
         var oldTransitions = {};
 
-        var run = function(nextCall) {
+        var run = function (nextCall) {
             var bound = false;
 
             // Prepare the callback.
-            var cb = function() {
+            var cb = function () {
                 if (bound) {
                     self.unbind(transitionEnd, cb);
                 }
 
                 if (i > 0) {
-                    self.each(function() {
+                    self.each(function () {
                         this.style[support.transition] = (oldTransitions[this] || null);
                     });
                 }
@@ -698,7 +698,7 @@
             }
 
             // Apply transitions.
-            self.each(function() {
+            self.each(function () {
                 if (i > 0) {
                     this.style[support.transition] = transitionValue;
                 }
@@ -708,7 +708,7 @@
 
         // Defer running. This allows the browser to paint any pending CSS it hasn't
         // painted yet before doing the transitions.
-        var deferredRun = function(next) {
+        var deferredRun = function (next) {
             this.offsetWidth = this.offsetWidth; // force a repaint
             run(next);
         };
@@ -729,12 +729,12 @@
         $.transit.propertyMap[prop] = support.transform;
 
         $.cssHooks[prop] = {
-            get: function(elem) {
+            get: function (elem) {
                 var t = $(elem).css('transit:transform');
                 return t.get(prop);
             },
 
-            set: function(elem, value) {
+            set: function (elem, value) {
                 var t = $(elem).css('transit:transform');
                 t.setFromString(prop, value);
 
@@ -750,7 +750,7 @@
     // Converts a camelcase string to a dasherized string.
     // (`marginLeft` => `margin-left`)
     function uncamel(str) {
-        return str.replace(/([A-Z])/g, function(letter) {
+        return str.replace(/([A-Z])/g, function (letter) {
             return '-' + letter.toLowerCase();
         });
     }

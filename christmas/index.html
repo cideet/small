@@ -1,15 +1,47 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
-    <meta charset="utf-8"/>
-    <title>Title</title>
-    <meta name="keywords" content=""/>
-    <meta name="description" content=""/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <title>慕课七夕主题</title>
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/im.js"></script>
 </head>
-<body>
 
+<body>
+<div id='content'>
+    <ul class='content-wrap'>
+        <!-- 第一副画面 -->
+        <li> 页面1</li>
+        <!-- 第二副画面 -->
+        <li> 页面2</li>
+        <!-- 第三副画面 -->
+        <li> 页面3</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    var container = $("#content");
+    // 获取第一个子节点
+    var element = container.find(":first");
+    // li页面数量
+    var slides = element.find("li");
+    // 获取容器尺寸
+    var width = container.width();
+    var height = container.height();
+    // 设置li页面总宽度
+    element.css({
+        width: (slides.length * width) + 'px',
+        height: height + 'px'
+    });
+    // 设置每一个页面li的宽度
+    $.each(slides, function (index) {
+        var slide = slides.eq(index); //获取到每一个li元素
+        slide.css({
+            width: width + 'px',
+            height: height + 'px'
+        });
+    });
+</script>
 </body>
+
 </html>
