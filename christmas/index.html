@@ -11,98 +11,6 @@
     <script src="js/swipe.js"></script>
     <script src="js/BoyWalk.js"></script>
     <style type="text/css">
-        button {
-            width: 80px;
-            height: 50px;
-        }
-
-        .button {
-            position: absolute;
-            bottom: 0;
-        }
-
-        /*人物暂停 */
-        .pauseWalk {
-            -webkit-animation-play-state: paused;
-            -moz-animation-play-state: paused;
-        }
-
-        /* 天空云 */
-
-        .cloud {
-            z-index: 2;
-            position: absolute;
-        }
-
-        .cloud1 {
-            width: 181px;
-            height: 101px;
-            left: -5%;
-            top: 15%;
-            background: url("http://img.mukewang.com/55addfde0001aec501810101.png");
-        }
-
-        .cloud2 {
-            width: 301px;
-            height: 140px;
-            right: -5%;
-            background: url("http://img.mukewang.com/55addff500016df503010140.png");
-        }
-
-        .cloud1Anim {
-            -webkit-animation-name: smallCloud;
-            -webkit-animation-duration: 3s;
-            -webkit-animation-iteration-count: infinite;
-            -moz-animation-name: smallCloud;
-            -moz-animation-duration: 3s;
-            -moz-animation-iteration-count: infinite;
-        }
-
-        .cloud2Anim {
-            -webkit-animation-name: largeCloud;
-            -webkit-animation-duration: 6s;
-            -webkit-animation-iteration-count: infinite;
-            -moz-animation-name: largeCloud;
-            -moz-animation-duration: 6s;
-            -moz-animation-iteration-count: infinite;
-        }
-
-        @-webkit-keyframes smallCloud {
-            0% {
-                left: -5%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-
-        @-moz-keyframes smallCloud {
-            0% {
-                left: -5%;
-            }
-            100% {
-                left: 100%;
-            }
-        }
-
-        @-webkit-keyframes largeCloud {
-            0% {
-                right: -5%;
-            }
-            100% {
-                right: 100%;
-            }
-        }
-
-        @-moz-keyframes largeCloud {
-            0% {
-                right: -5%;
-            }
-            100% {
-                right: 100%;
-            }
-        }
-
 
     </style>
 </head>
@@ -134,7 +42,6 @@
 </div>
 <script type="text/javascript">
     $(function () {
-
         var container = $("#content");
         var swipe = Swipe(container);
 
