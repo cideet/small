@@ -18,6 +18,59 @@
             left: 6%;
             top: 55%;
         }
+
+        .slowWalk {
+            /*规定 @keyframes 动画的名称。*/
+            -webkit-animation-name: person-slow;
+            /*规定动画完成一个周期所花费的秒或毫秒。默认是 0*/
+            -webkit-animation-duration: 950ms;
+            /*规定动画被播放的次数。默认是 1。 infinite(循环播放)*/
+            -webkit-animation-iteration-count: infinite;
+            /*动画切换的方式是一帧一帧的改变*/
+            -webkit-animation-timing-function: steps(1, start);
+            -moz-animation-name: person-slow;
+            -moz-animation-duration: 950ms;
+            -moz-animation-iteration-count: infinite;
+            -moz-animation-timing-function: steps(1, start)
+        }
+
+        /* 普通慢走 */
+
+        @-webkit-keyframes person-slow {
+            0% {
+                background-position: -0px -291px;
+            }
+            25% {
+                background-position: -602px -0px;
+            }
+            50% {
+                background-position: -302px -291px;
+            }
+            75% {
+                background-position: -151px -291px;
+            }
+            100% {
+                background-position: -0px -291px;
+            }
+        }
+
+        @-moz-keyframes person-slow {
+            0% {
+                background-position: -0px -291px;
+            }
+            25% {
+                background-position: -602px -0px;
+            }
+            50% {
+                background-position: -302px -291px;
+            }
+            75% {
+                background-position: -151px -291px;
+            }
+            100% {
+                background-position: -0px -291px;
+            }
+        }
     </style>
 </head>
 
@@ -35,6 +88,9 @@
         <li>页面3</li>
     </ul>
     <div id="boy" class="charector"></div>
+    <div class="button">
+        <button>点击开始动画</button>
+    </div>
 </div>
 <script type="text/javascript">
     var swipe = Swipe($("#content"));
@@ -62,6 +118,15 @@
     // 路的中间位置减去小孩的高度，25是一个修正值
     $boy.css({
         top: pathY - boyHeight + 25
+    });
+
+    // ==========================
+    //     增加精灵动画
+    // ==========================
+
+    $('button').click(function(){
+        // 增加走路的CSS3关键帧规则
+        $boy.addClass('slowWalk');
     });
 </script>
 </body>
