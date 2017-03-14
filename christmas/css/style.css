@@ -9,7 +9,6 @@ html, body {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    -moz-box-sizing: border-box;
 }
 
 ul,
@@ -41,22 +40,4 @@ li {
     float: left;
     /*overflow: hidden;*/
     position: relative;
-}
-
-li:nth-child(2) {
-    background: #9BCD9B;
-}
-
-li:nth-child(3) {
-    background: yellow;
-}
-
-button {
-    width: 100px;
-    height: 50px;
-}
-
-.button {
-    position: absolute;
-    bottom: 0;
 }
