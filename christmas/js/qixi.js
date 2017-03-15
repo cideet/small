@@ -73,11 +73,13 @@ function BoyWalk() {
             top: $elem.position().top
         };
     };
+
     // 路的Y轴
     var pathY = function () {
         var data = getValue('.a_background_middle');
         return data.top + data.height / 2;
     }();
+
     var $boy = $("#boy");
     var boyWidth = $boy.width();
     var boyHeight = $boy.height();
@@ -133,29 +135,37 @@ function BoyWalk() {
     // 走进商店
     function walkToShop(runTime) {
         var defer = $.Deferred();
-        var doorObj = $('.door')
+        var doorObj = $('.door');
         // 门的坐标
         var offsetDoor = doorObj.offset();
         var doorOffsetLeft = offsetDoor.left;
+        var doorOffsetTop = offsetDoor.top;
         // 小孩当前的坐标
-        var offsetBoy = $boy.offset();
-        var boyOffetLeft = offsetBoy.left;
-
-        // 当前需要移动的坐标
-        instanceX = (doorOffsetLeft + doorObj.width() / 2) - (boyOffetLeft + $boy.width() / 2);
+        var posBoy = $boy.position();
+        var boyPoxLeft = posBoy.left;
+        var boyPoxTop = posBoy.top;
+        // 中间位置
+        var boyMiddle = $boy.width() / 2;
+        var doorMiddle = doorObj.width() / 2;
+        var doorTopMiddle = doorObj.height() / 2;
+        
+        // Y的坐标
+        // top = 人物底部的top - 门中见的top值
+        instanceY = boyPoxTop + boyHeight - doorOffsetTop + (doorTopMiddle);
 
         // 开始走路
         var walkPlay = stratRun({
-            transform: 'translateX(' + instanceX + 'px),scale(0.3,0.3)',
+            transform: 'translateX(' + instanceX + 'px),translateY(-'+ instanceY +'px),scale(0.5,0.5)',
             opacity: 0.1
         }, 2000);
+
         // 走路完毕
-        walkPlay.done(function () {
+        walkPlay.done(function() {
             $boy.css({
                 opacity: 0
             });
             defer.resolve();
-        })
+        });
         return defer;
     }
 
@@ -179,7 +189,7 @@ function BoyWalk() {
     function talkFlower() {
         // 增加延时等待效果
         var defer = $.Deferred();
-        setTimeout(function() {
+        setTimeout(function () {
             // 取花
             $boy.addClass('slowFlolerWalk');
             defer.resolve();
@@ -217,7 +227,7 @@ function BoyWalk() {
         },
 
         // 取花
-        talkFlower: function() {
+        talkFlower: function () {
             return talkFlower();
         }
     }
