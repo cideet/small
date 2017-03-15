@@ -45,9 +45,12 @@
                 <!-- 灯 -->
                 <div class="lamp"></div>
             </div>
+            <!-- 鸟 -->
+            <div class="bird"></div>
         </li>
         <li>页面3</li>
     </ul>
+
     <div id="boy" class="charector"></div>
     <div class="button">
         <button>开始</button>
@@ -73,6 +76,19 @@
 
     var boy = BoyWalk();
 
+    /////////
+    //右边飞鸟 //
+    /////////
+    var bird = {
+        elem: $(".bird"),
+        fly: function () {
+            this.elem.addClass('birdFly')
+            this.elem.transition({
+                right: container.width()
+            }, 15000, 'linear');
+        }
+    };
+
     function startRun() {
 
         boy.walkTo(2000, 0.5).then(function () {
@@ -90,6 +106,9 @@
         }).then(function () {
             // 取花
             return boy.talkFlower();
+        }).then(function () {
+            // 飞鸟
+            bird.fly();
         }).then(function () {
             //出商店
             return boy.outShop(2000)
