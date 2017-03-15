@@ -81,15 +81,14 @@ function BoyWalk() {
 
     // 计算移动距离
     function calculateDist(direction, proportion) {
-        return (direction == "x" ?
-                visualWidth : visualHeight) * proportion;
+        return (direction == "x" ? visualWidth : visualHeight) * proportion;
     }
 
     return {
         // 开始走路
         walkTo: function (time, proportionX, proportionY) {
-            var distX = calculateDist('x', proportionX)
-            var distY = calculateDist('y', proportionY)
+            var distX = calculateDist('x', proportionX);
+            var distY = calculateDist('y', proportionY);
             return walkRun(time, distX, distY);
         },
         // 停止走路
