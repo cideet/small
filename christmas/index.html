@@ -94,6 +94,18 @@
             })
         });
 
+        ///////////
+        // 灯动画 //
+        ///////////
+        var lamp = {
+            elem: $('.b_background'),
+            bright: function() {
+                this.elem.addClass('lamp-bright')
+            },
+            dark: function() {
+                this.elem.removeClass('lamp-bright')
+            }
+        };
 
         function doorAction(left, right, time) {
             var $door = $('.door');
@@ -129,15 +141,21 @@
         function shutDoor() {
             return doorAction('0%', '50%', 2000);
         }
-        
+
         // 开门
         $("button").eq(1).click(function () {
-            openDoor();
+            openDoor().then(function(){
+                // 开灯
+                lamp.bright();
+            });
         });
 
         // 关门
         $("button").eq(2).click(function () {
-            shutDoor();
+            shutDoor().then(function(){
+                // 灯灭
+                lamp.dark();
+            });
         });
 
     })

@@ -3,13 +3,13 @@
 .b_background {
     width: 100%;
     height: 100%;
-    background-image: url("../images/QixiB-bright.png");
+    background-image: url("../images/QixiB-dark.png");
     background-size: 100% 100%;
     position: absolute;
 }
 
 .b_background_preload {
-    background: url("../images/QixiB-bright.png") no-repeat -9999px -9999px;
+    background: url("../images/QixiB-dark.png") no-repeat -9999px -9999px;
 }
 
 .lamp-bright {
@@ -52,3 +52,5 @@
     background: url("../images/door-right.png");
     background-size: 100% 100%;
 }
+
+
