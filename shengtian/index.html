@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>盛天人力资源招聘</title>
+    <link href="css/hr.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        .box2 .box2-clock{top:auto; bottom: 25px;}
+    </style>
+    <script type="text/javascript">
+
+        var ST={PATH:{JS:"js/",JSTMP:"jsTemplate/",IMAGE:"image/", CSS:{},PUBLIC:{},ROOT:"",SUFFIX:'.html'},CACHE:{},JTE:{},todo:function(){}};
+        // (function(W){
+        //     if(/iphone|nokia|sony|ericsson|mot|samsung|sgh|lg|philips|panasonic|alcatel|lenovo|cldc|midp|wap|mobile/i.test(navigator.userAgent.toLowerCase())){
+        //         if(navigator.userAgent.toLowerCase().indexOf('ipad') > -1||(window.innerWidth>=1024&&window.innerHeight>=768)||(window.innerWidth>=800&&window.innerHeight>=1024)){
+        //              W.location.href = 'hd.html';
+        //         }else{
+        //            W.location.href = 'm.html';  
+        //         }
+        //     }
+        // })(window)
+        var Jser={};
+        (function(a) {
+            function b(a) {
+                var os = this.os = {}, browser = this.browser = {}, WebKit = a.match(/WebKit\/([\d.]+)/),
+                        android = a.match(/(Android)\s+([\d.]+)/),
+                        ipad = a.match(/(iPad).*OS\s([\d_]+)/),
+                        iphone = !ipad && a.match(/(iPhone\sOS)\s([\d_]+)/),
+                        webOS = a.match(/(webOS|hpwOS)[\s\/]([\d.]+)/),
+                        touchPad = webOS && a.match(/TouchPad/),
+                        Kindle = a.match(/Kindle\/([\d.]+)/),
+                        Silk = a.match(/Silk\/([\d._]+)/),
+                        BlackBerry = a.match(/(BlackBerry).*Version\/([\d.]+)/),
+                        BB10 = a.match(/(BB10).*Version\/([\d.]+)/),
+                        RIM = a.match(/(RIM\sTablet\sOS)\s([\d.]+)/),
+                        PlayBook = a.match(/PlayBook/),
+                        Chrome = a.match(/Chrome\/([\d.]+)/) || a.match(/CriOS\/([\d.]+)/),
+                        Firefox = a.match(/Firefox\/([\d.]+)/),
+                        PC = a.match(/Windows|Linux|Macintosh/);
+                if (browser.webkit = !! WebKit) browser.version = WebKit[1];
+                android && (os.android = !0, os.version = android[2]),
+                iphone && (os.ios = os.iphone = !0,os.version = iphone[2].replace(/_/g, ".")),
+                ipad && (os.ios = os.ipad = !0,os.version = ipad[2].replace(/_/g, ".")),
+                webOS && (os.webos = !0, os.version = webOS[2]),
+                touchPad && (os.touchpad = !0),
+                BlackBerry && (os.blackberry = !0, os.version = BlackBerry[2]),
+                BB10 && (os.bb10 = !0, os.version = BB10[2]),
+                RIM && (os.rimtabletos = !0, os.version = RIM[2]),
+                PlayBook && (browser.playbook = !0),
+                Kindle && (os.kindle = !0, os.version = Kindle[1]),
+                Silk && (browser.silk = !0, browser.version = Silk[1]),!Silk && os.android && a.match(/Kindle Fire/) && (browser.silk = !0),
+                Chrome && (browser.chrome = !0, browser.version = Chrome[1]),
+                Firefox && (browser.firefox = !0, browser.version = Firefox[1]),
+
+                        os.tablet = !! (ipad || PlayBook || android && !a.match(/Mobile/) || Firefox && a.match(/Tablet/)),
+                        os.phone = !os.tablet && !! (android || iphone || webOS || BlackBerry || BB10 || Chrome && a.match(/Android/) || Chrome && a.match(/CriOS\/([\d.]+)/) || Firefox && a.match(/Mobile/)),
+                        os.pc=!os.tablet&&!os.phone&&!!PC;
+            }
+            b.call(a, navigator.userAgent), a.__detect = b;
+        })(Jser);
+        (function(W){
+            if(Jser.os.phone){
+                W.location.href = 'm.html';
+            }else if(Jser.os.tablet){
+                W.location.href = 'hd.html';
+            }
+        })(window)
+
+    </script>
+    <script src="js/jquery-min.js"></script>
+    <!--[if IE 6]>
+    <script src="js/DD_belatedPNG_0.0.8a.js"></script>
+    <script>
+        DD_belatedPNG.fix('.png');
+    </script>
+    <![endif]-->
+</head>
+<body scroll="no">
+<!--[if lte IE 6]>
+<div id="ie6-warning" style="position:absolute;top:0px;z-index:100000; width: 100%; border-bottom: 1px solid #ffac75; background: #fff4ed;" class="cnNotice">  <p style="position: relative; width: 900px; height: 28px; line-height: 28px; color: #b54800; margin: 0 auto; padding: 0 30px; text-align: center; overflow: hidden;">尊敬的用户，您使用的浏览器版本过低,为了保障您获取更好的操作体验,请升级您的浏览器。推荐使用的浏览器:新版IE,Chrome,火狐等浏览器!<img onclick="this.parentNode.parentNode.style.display='none';" src="images/closeX.png" style="position: absolute; right: 10px; top: 8px; cursor: pointer;">  </p></div>
+<![endif]-->
+<div class="box-box">
+    <div class="scroll">
+        <div class="scroll-ruler png">
+            <div class="scroll-ruler-inner" id="scroll" ></div>
+            <div class="scroll-ruler-point  png" style="left: 121px;"></div>
+            <div class="scroll-ruler-point  png" style="left: 233px;"></div>
+            <div class="scroll-ruler-point  png" style="left: 344px;"></div>
+            <div class="scroll-ruler-point  png" style="left: 456px;"></div>
+        </div>
+        <div class="scroll-head  png" id="scroll_h"></div>
+        <div class="scroll-ruler-txt  png"></div>
+        <div class="scroll-ruler-tips">
+            <div class="scroll-ruler-keryboard  png"></div>
+        </div>
+
+    </div>
+    <div class="arrow arrow-left" style="display: none;"></div>
+    <div class="arrow arrow-right" style="display: none;"></div>
+    <div class="box-wrap" id="stage" style="width: 9600px;">
+        <div class="box box1">
+            <div class="box1-bg">
+                <div class="box1-city"></div>
+                <div class="box1-main">
+                    <div class="box1-logo png" id="logo"></div>
+                    <div class="box1-t1 png" id="love_text"></div>
+                    <div class="box1-xf png" id="love_text_love"></div>
+                    <div class="box1-heart png" id="love_heart"></div>
+                    <div class="box1-arrow png"  id="love_arrow"></div>
+                    <div class="box1-arrow-b png" id="love_arrow_b"></div>
+                </div>
+                <!--休闲小人-->
+                <div class="people css3-people" id="person_x">
+                    <div class="p-body3 png"></div>
+                    <div class="p-hand3-l png"></div>
+                    <div class="p-hand3-r png"></div>
+                    <div class="p-foot3-l png"></div>
+                    <div class="p-foot3-r png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box box2">
+            <div class="box2-bg">
+                <div class="box2-step "></div>
+                <div class="box-main">
+                    <div class="box2-t1 png" id="scene2_title"></div>
+                    <div class="box2-dream png" id="scene2_dream"></div>
+                    <div class="box2-place" id="scene2_place">
+                        <ul class="list-img">
+                            <li class="one"><img src="images/hj1.jpg"  alt="" width="180" height="140"/></li>
+                            <li class="two"><img src="images/hj2.jpg" alt="" width="180" height="140"/></li>
+                            <li class="three"><img src="images/hj3.jpg" alt="" width="180" height="140"/></li>
+                        </ul>
+                    </div>
+                    <div class="box2-clock png" id="scene2_clock">
+                        <div class="clock-left png" ></div>
+                        <div class="clock-right png"></div>
+                        <div class="clock-inner png">
+                            <div class="clock-center"></div>
+                            <div class="clock-hour"></div>
+                            <div class="clcok-minute"></div>
+                            <div class="clock-second png"></div>
+                        </div>
+                    </div>
+                    <div class="box2-txt" id="scene2_text">
+                        <div class="f16">虽然你仍需要在工作日的早上被讨厌的闹钟&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;叫醒</div>
+                        <div class="box2-txt-clock png"></div>
+                        <div class="box2-zz box2-zz1">Z</div>
+                        <div class="box2-zz box2-zz2">Z</div>
+                        <div class="box2-t1 png"></div>
+                        <div class="box2-t2 f18">我们只给你实现梦想的阶梯</div>
+                        <div class="box2-t3 f16">做自己爱做的事</div>
+                        <div class="box2-t4 png"></div>
+                    </div>
+                    <div class="box2-txtl png"></div>
+                    <div class="box2-txtr png"></div>
+                </div>
+                <!--睡觉小人-->
+                <div class="people css3-people" id="person_s" >
+                    <div class="p-body1 png"></div>
+                    <div class="p-hand1-l png"></div>
+                    <div class="p-hand1-r png"></div>
+                    <div class="p-foot1-l png"></div>
+                    <div class="p-foot1-r png"></div>
+                </div>
+                <!--工作小人-->
+                <div class="people css3-people" id="person_w">
+                    <div class="p-body2 png"></div>
+                    <div class="p-hand2-l png" style="animation:none;"></div>
+                    <div class="p-hand2-r png" ></div>
+                    <div class="p-bag png"></div>
+                    <div class="p-foot2-l png"></div>
+                    <div class="p-foot2-r png"></div>
+                </div>
+
+            </div>
+        </div>
+        <div class="box box3">
+            <div class="box3-bg">
+                <div class="box3-city"></div>
+                <div class="box3-main">
+                    <div class="box3-top3 png" id="scene3_title"></div>
+                    <div class="box3-distance png" id="scene3_distance"></div>
+                    <div class="box3-tree box3-tree1 png"></div>
+                    <div class="box3-tree box3-tree2 png"></div>
+                    <div class="box3-tree box3-tree3 png"></div>
+                    <div class="box3-tree box3-tree4 png"></div>
+                    <div class="box3-people" id="scene3_imgs">
+                        <ul class="list-img">
+                            <li class="one"><img src="images/rw1.jpg" width="180" height="140" /></li>
+                            <li class="two"><img src="images/rw2.jpg" width="180" height="140" /></li>
+                            <li class="three"><img src="images/rw3.jpg" width="180" height="140" /></li>
+                            <li class="four"><img src="images/rw4.jpg" width="180" height="140" /></li>
+                        </ul>
+                    </div>
+                    <div class="box3-txt" id="scene3_text">
+                        <div class="f16">虽然你仍需要每天为工作奔波劳碌</div>
+                        <div class="box3-t1">你却有机会用自己的汗水&nbsp;&nbsp;&nbsp;换取一方小窝</div>
+                        <div class="box3-rain png"></div>
+                        <div class="box3-t2 f16">这里，你不会为那一张归家的车票烦恼</div>
+                        <div class="box3-t3 f18">日出而作，日落而归</div>
+                        <div class="box3-t4 png"></div>
+                    </div>
+                    <div class="box3-txtl png"></div>
+                    <div class="box3-txtr png"></div>
+                </div>
+                <!--汽车小人-->
+                <div class="box3-cars1 css3-box3-cars1" id="person_car" style="display: block;">
+                    <div style="position: relative">
+                        <div class="box3-car png">
+                            <div class="box3-car-star box3-car-star1 png"></div>
+                            <div class="box3-car-star box3-car-star2 png"></div>
+                        </div>
+                        <div class="box3-car-head png" id="person_car_head"></div>
+                        <div class="box3-car-gas png"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box box4">
+            <div class="box4-bg">
+                <div class="box4-cloud png"></div>
+                <div class="box4-under"></div>
+                <div class="box-main">
+                    <div class="box4-work" id="scene4_imgs">
+                        <ul>
+                            <li class="one"><img src="images/wk1.jpg" alt="" width="180" height="140"/></li>
+                            <li class="two"><img src="images/wk2.jpg" alt="" width="180" height="140"/></li>
+                            <li class="three"><img src="images/wk3.jpg" alt="" width="180" height="140"/></li>
+                            <li class="four"><img src="images/wk4.jpg" alt="" width="180" height="140"/></li>
+                        </ul>
+                    </div>
+                    <div class="box4-icecream png">
+                        <div class="box4-icecream-straw png"></div>
+                    </div>
+                    <div class="box4-workfun png"></div>
+                    <div class="box4-burger png"></div>
+                    <div class="box4-flowers" id="scene4_flowers">
+                        <div class="box4-flower box4-flower1 png"></div>
+                        <div class="box4-flower box4-flower2 png"></div>
+                        <div class="box4-flower box4-flower3 png"></div>
+                    </div>
+                    <div class="box4-txt" id="scene4_text">
+                        <div class="f18">认真收获认同，专业赢得掌声</div>
+                        <div class="box4-t1">免费的下午茶</div>
+                        <div class="box4-t2 f18">明亮开放的办公间</div>
+                        <div class="box4-t3">价值观相同的小伙伴</div>
+                    </div>
+                    <div class="box4-txt-l png"></div>
+                    <div class="box4-txt-r png"></div>
+                </div>
+                <!--工作小人-->
+                <div class="people css3-people" id="person_w_nobag">
+                    <div class="p-body2 png"></div>
+                    <div class="p-hand2-l p-hand2-nobag png"></div>
+                    <div class="p-hand2-r png"></div>
+                    <div class="p-foot2-l png"></div>
+                    <div class="p-foot2-r png"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box box5" id="scene5_imgs">
+            <div class="box5-stimg box5-st1">
+                <img src="images/st1.jpg" alt="" width="321" height="266"/>
+            </div>
+            <div class="box5-stimg box5-st2">
+                <img src="images/st2.jpg" alt="" width="321" height="266"/>
+            </div>
+            <div class="box5-stimg box5-st3">
+                <img src="images/st3.jpg" alt="" width="321" height="266"/>
+            </div>
+            <div class="box5-stimg box5-st4">
+                <img src="images/st4.jpg" alt="" width="321" height="266"/>
+            </div>
+            <div class="box5-stimg box5-st5">
+                <img src="images/st5.jpg" alt="" width="321" height="266"/>
+            </div>
+            <div class="box5-stimg box5-st6">
+                <img src="images/st6.jpg" alt="" width="642" height="266"/>
+            </div>
+            <div class="box5-stimg box5-st7">
+                <img src="images/st7.jpg" alt="" width="321" height="266"/>
+            </div>
+            <div class="box5-stimg box5-st8">
+                <img src="images/st8.jpg" alt="" width="321" height="266"/>
+            </div>
+            <div class="box5-stimg box5-st9">
+                <img src="images/st9.jpg" alt="" width="321" height="266"/>
+            </div>
+            <div class="box-5logo js-text"></div>
+            <div class="box5-join js-text">
+                <div class="box5-txt">
+                    <div class="txt-1">你得相信</div>
+                    <div class="txt-2">这里提供武汉最能让您感到<b>幸福</b>的工作……</div>
+                    <div class="txt-3">简历投递邮箱: zhaopin@stnts.com</div>
+                </div>
+                <div class="box5-join-btn"><a href="http://search.51job.com/list/co,c,2724311,000000,10,1.html" target="_blank" class="j-btn">加入我们</a></div>
+            </div>
+            <div class="box5-pencil css3-box5-pencil js-text"></div>
+            <div class="box5-home js-text" onclick="ST.hr.tl.progress(0);return false;"></div>
+            <!--<div class="box5-map js-text">
+                <div class="box5-mapicon"></div>
+                <div class="box5-place">
+                    <p class="box5-place1">武汉市东湖新技术开发区光谷大道77号金融港B7栋9-11楼</p>
+                    <p class="box5-place2">9-11th floor, B7, FinancialHarbour, NO.77, Guanggu Avenue,
+                        East Lake New Technology Development Zone,Wuhan, China</p>
+                </div>
+            </div>-->
+            <div class="box5-phone js-text">
+                <p><span>联系电话</span>027-86655050</p>
+                <p><span>传真号码</span>027-87498500</p>
+                <p><span>邮政编码</span>430070</p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="keyboard-notice" id="keyboard_notice">
+        <div class="close" onclick="this.parentNode.style['display']='none';"><img class="png" src="images/notice_close.png" /></div>
+        <div class="inner">
+            <div style="padding: 50px">
+                <img src="images/keyboard_notice.png" class="png" />
+            </div>
+        </div>
+        <div class="shadow"></div>
+    </div>
+</div>
+
+</body>
+</html>
+<script src="js/CSSPlugin.js"></script>
+<script src="js/EasePack.js"></script>
+<script src="js/TimelineLite.js"></script>
+<script src="js/TweenLite.js"></script>
+<!--<script src="js/jquery.gsap.js"></script>-->
+<script src="js/hr.js"></script>
