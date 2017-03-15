@@ -9,7 +9,7 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/jquery.transit.js"></script>
     <script src="js/swipe.js"></script>
-    <script src="js/BoyWalk.js"></script>
+    <script src="js/qixi.js"></script>
     <style type="text/css">
 
     </style>
@@ -70,7 +70,7 @@
         ////////////////////////////////////////////////////////
 
         //用来临时调整页面
-        swipe.scrollTo(container.width(), 0);
+        //swipe.scrollTo(container.width(), 0);
 
         //////////
         // 小孩走路 //
@@ -87,10 +87,10 @@
             boy.walkTo(2000, 0.2).then(function () {
                 // 第一次走路完成
                 // 开始页面滚动
-                //scrollTo(5000, 1);
+                scrollTo(5000, 1);
             }).then(function () {
                 // 第二次走路
-                return boy.walkTo(5000, 0.5);
+                return boy.walkTo(5000, 0.8);
             })
         });
 
