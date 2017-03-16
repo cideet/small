@@ -79,7 +79,6 @@ li {
 }
 
 /* 普通慢走 */
-
 @-webkit-keyframes person-slow {
     0% {
         background-position: -0px -291px;
@@ -135,7 +134,6 @@ li {
 }
 
 /*带花*/
-
 @-webkit-keyframes person-floler-slow {
     0% {
         background-position: -453px -0px;
