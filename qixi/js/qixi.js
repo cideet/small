@@ -1,4 +1,3 @@
-
 // 动画结束事件
 var animationEnd = (function () {
     var explorer = navigator.userAgent;
@@ -36,7 +35,7 @@ function scrollTo(time, proportionX) {
 // 获取数据
 var getValue = function (className) {
     var $elem = $('' + className + '');
-    // 走路的路线坐标
+    //走路的路线坐标
     return {
         height: $elem.height(),
         top: $elem.position().top
@@ -86,7 +85,7 @@ function doorAction(left, right, time) {
             return;
         }
         count--;
-    };
+    }
     doorLeft.transition({
         'left': left
     }, time, complete);
@@ -120,7 +119,7 @@ function BoyWalk() {
     // 获取数据
     var getValue = function (className) {
         var $elem = $('' + className + '');
-        //走路的路线坐标
+        // 走路的路线坐标
         return {
             height: $elem.height(),
             top: $elem.position().top
@@ -133,6 +132,7 @@ function BoyWalk() {
     }();
 
     var $boy = $("#boy");
+    var boyWidth = $boy.width();
     var boyHeight = $boy.height();
 
     // 设置下高度
@@ -187,7 +187,7 @@ function BoyWalk() {
     // 走进商店
     function walkToShop(runTime) {
         var defer = $.Deferred();
-        var doorObj = $('.door')
+        var doorObj = $('.door');
         // 门的坐标
         var offsetDoor = doorObj.offset();
         var doorOffsetLeft = offsetDoor.left;
@@ -207,7 +207,7 @@ function BoyWalk() {
         instanceX = (doorOffsetLeft + doorMiddle) - (boyPoxLeft + boyMiddle);
 
         // Y的坐标
-        //top = 人物底部的top - 门中见的top值
+        // top = 人物底部的top - 门中见的top值
         instanceY = boyPoxTop + boyHeight - doorOffsetTop + (doorTopMiddle);
 
         // 开始走路
@@ -219,7 +219,7 @@ function BoyWalk() {
         walkPlay.done(function () {
             $boy.css({
                 opacity: 0
-            })
+            });
             defer.resolve();
         });
         return defer;
@@ -251,8 +251,8 @@ function BoyWalk() {
     return {
         // 开始走路
         walkTo: function (time, proportionX, proportionY) {
-            var distX = calculateDist('x', proportionX)
-            var distY = calculateDist('y', proportionY)
+            var distX = calculateDist('x', proportionX);
+            var distY = calculateDist('y', proportionY);
             return walkRun(time, distX, distY);
         },
         // 走进商店
@@ -289,7 +289,7 @@ function BoyWalk() {
                 $boy.on(animationEnd, function () {
                     callback();
                     $(this).off();
-                })
+                });
             }
         },
         // 取花
