@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
-    <title>七夕主题</title>
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
-    <link type="text/css" rel="stylesheet" href="css/page-a.css"/>
-    <link type="text/css" rel="stylesheet" href="css/page-b.css"/>
-    <link type="text/css" rel="stylesheet" href="css/page-c.css"/>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/jquery.transit.js"></script>
-    <style type="text/css">
 
-    </style>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>七夕主题</title>
+    <link rel='stylesheet' href='css/stylee.css' />
+    <link rel='stylesheet' href='css/pagea.css' />
+    <link rel='stylesheet' href='css/pageb.css' />
+    <link rel='stylesheet' href='css/pagec.css' />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.transit.js"></script>
+    <script type="text/javascript" src="js/qixii.js"></script>
 </head>
 
 <body>
 <div id='content'>
     <ul class='content-wrap'>
+        <!-- 第一副画面 -->
         <li>
+            <!-- 背景图 -->
             <div class="a_background">
                 <div class="a_background_top"></div>
                 <div class="a_background_middle"></div>
                 <div class="a_background_botton"></div>
             </div>
-            <!-- 太阳 -->
-            <div id="sun"></div>
             <!-- 云 -->
             <div class="cloudArea">
                 <div class="cloud cloud1"></div>
                 <div class="cloud cloud2"></div>
             </div>
+            <!-- 太阳 -->
+            <div id="sun"></div>
         </li>
+        <!-- 第二副画面 -->
         <li>
             <!-- 背景图 -->
             <div class="b_background"></div>
@@ -47,6 +49,7 @@
             <!-- 鸟 -->
             <div class="bird"></div>
         </li>
+        <!-- 第三副画面 -->
         <li>
             <!-- 背景图 -->
             <div class="c_background">
@@ -56,7 +59,6 @@
             </div>
             <!-- 小女孩 -->
             <div class="girl"></div>
-            <!-- 水波 -->
             <div class="bridge-bottom">
                 <div class="water">
                     <div id="water1" class="water_1"></div>
@@ -74,63 +76,15 @@
                 <li class="stars5"></li>
                 <li class="stars6"></li>
             </ul>
+            <!-- 慕课网logo图 -->
             <div class="logo"></div>
         </li>
     </ul>
-    <!-- 飘花 -->
+    <!-- 雪花 -->
     <div id="snowflake"></div>
+    <!-- 小男孩 -->
     <div id="boy" class="charector"></div>
-    <div class="button">
-        <button>播放音乐</button>
-    </div>
 </div>
-<script type="text/javascript">
-    $(function () {
-        //////////
-        // 小孩走路 //
-        //////////
-        var boy = BoyWalk();
-
-        boy.talkFlower();
-
-        // 音乐配置
-        var audioConfig = {
-            enable: true, // 是否开启音乐
-            //playURl: 'http://www.imooc.com/upload/media/happy.wav', // 正常播放地址
-            //cycleURL: 'http://www.imooc.com/upload/media/circulation.wav' // 正常循环播放地址
-            playURl: 'images/happy.wav',
-            cycleURL: 'images/happy.wav'
-
-        };
-
-        /////////
-        //背景音乐 //
-        /////////
-        function Hmlt5Audio(url, isloop) {
-            var audio = new Audio(url);
-            audio.autoPlay = true;
-            audio.loop = isloop || false;
-            audio.play();
-            return {
-                end: function (callback) {
-                    audio.addEventListener('ended', function () {
-                        callback();
-                    }, false);
-                }
-            };
-        }
-
-        // 开始
-        $("button").click(function () {
-            var audio1 = Hmlt5Audio(audioConfig.playURl);
-            audio1.end(function () {
-                Hmlt5Audio(audioConfig.cycleURL, true);
-            });
-        });
-
-    })
-</script>
-<script src="js/swipe.js"></script>
-<script src="js/qixi.js"></script>
 </body>
+
 </html>
