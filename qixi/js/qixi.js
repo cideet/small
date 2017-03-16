@@ -1,3 +1,14 @@
+
+// 动画结束事件
+var animationEnd = (function () {
+    var explorer = navigator.userAgent;
+    if (~explorer.indexOf('WebKit')) {
+        return 'webkitAnimationEnd';
+    }
+    return 'animationend';
+})();
+
+
 ///////////
 //灯动画 //
 ///////////
@@ -44,7 +55,7 @@ var bridgeY = function () {
 var girl = {
     elem: $('.girl'),
     getHeight: function () {
-        return this.elem.height()
+        return this.elem.height();
     },
     setOffset: function () {
         this.elem.css({
@@ -109,7 +120,7 @@ function BoyWalk() {
     // 获取数据
     var getValue = function (className) {
         var $elem = $('' + className + '');
-        // 走路的路线坐标
+        //走路的路线坐标
         return {
             height: $elem.height(),
             top: $elem.position().top
@@ -122,10 +133,9 @@ function BoyWalk() {
     }();
 
     var $boy = $("#boy");
-    var boyWidth = $boy.width();
     var boyHeight = $boy.height();
 
-    //设置下高度
+    // 设置下高度
     $boy.css({
         top: pathY - boyHeight + 25
     });
@@ -174,7 +184,6 @@ function BoyWalk() {
         return d1;
     }
 
-
     // 走进商店
     function walkToShop(runTime) {
         var defer = $.Deferred();
@@ -198,7 +207,7 @@ function BoyWalk() {
         instanceX = (doorOffsetLeft + doorMiddle) - (boyPoxLeft + boyMiddle);
 
         // Y的坐标
-        // top = 人物底部的top - 门中见的top值
+        //top = 人物底部的top - 门中见的top值
         instanceY = boyPoxTop + boyHeight - doorOffsetTop + (doorTopMiddle);
 
         // 开始走路
@@ -210,7 +219,7 @@ function BoyWalk() {
         walkPlay.done(function () {
             $boy.css({
                 opacity: 0
-            });
+            })
             defer.resolve();
         });
         return defer;
@@ -231,17 +240,19 @@ function BoyWalk() {
         });
         return defer;
     }
-    
+
+
     // 计算移动距离
     function calculateDist(direction, proportion) {
-        return (direction == "x" ? visualWidth : visualHeight) * proportion;
+        return (direction == "x" ?
+                visualWidth : visualHeight) * proportion;
     }
 
     return {
         // 开始走路
         walkTo: function (time, proportionX, proportionY) {
-            var distX = calculateDist('x', proportionX);
-            var distY = calculateDist('y', proportionY);
+            var distX = calculateDist('x', proportionX)
+            var distY = calculateDist('y', proportionY)
             return walkRun(time, distX, distY);
         },
         // 走进商店
@@ -257,7 +268,7 @@ function BoyWalk() {
             pauseWalk();
         },
         setColoer: function (value) {
-            $boy.css('background-color', value);
+            $boy.css('background-color', value)
         },
         // 获取男孩的宽度
         getWidth: function () {
@@ -269,9 +280,21 @@ function BoyWalk() {
             // 恢复图片
             $boy.removeClass('slowWalk slowFlolerWalk').addClass('boyOriginal');
         },
-        setFlolerWalk: function () {
+        // 转身动作
+        rotate: function (callback) {
+            restoreWalk();
+            $boy.addClass('boy-rotate');
+            // 监听转身完毕
+            if (callback) {
+                $boy.on(animationEnd, function () {
+                    callback();
+                    $(this).off();
+                })
+            }
+        },
+        // 取花
+        talkFlower: function () {
             $boy.addClass('slowFlolerWalk');
         }
-
     }
 }
