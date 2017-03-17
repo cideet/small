@@ -8,10 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <link type="text/css" rel="stylesheet" href="css/style.css" />
-    <link type="text/css" rel="stylesheet" href="css/page-a.css" />
-    <link type="text/css" rel="stylesheet" href="css/page-b.css" />
-    <link type="text/css" rel="stylesheet" href="css/page-c.css" />
+    <link type="text/css" rel="stylesheet" href="css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="css/page-a.css"/>
+    <link type="text/css" rel="stylesheet" href="css/page-b.css"/>
+    <link type="text/css" rel="stylesheet" href="css/page-c.css"/>
 </head>
 <body>
 
@@ -29,6 +29,17 @@
 
 <script src="js/jquery.min.js"></script>
 <script src="js/jquery.mousewheel.js"></script>
-<script src="js/qixi.js"></script>
+<script src="js/swipe.js"></script>
+<script>
+    var swipe = Swipe($("#content"));
+    $("button").eq(0).click(function () {
+        swipe.scrollTo($("#content").width() * 2, 3);
+    });
+
+    $(document).on('mousewheel', function (event) {
+        swipe.mousewheel(event, 50);
+    })
+
+</script>
 </body>
 </html>
