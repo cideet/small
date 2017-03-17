@@ -29,3 +29,20 @@ $("button").eq(0).click(function () {
         'transform': 'translate3d(-' + (width * 2) + 'px,0,0)'
     });
 });
+
+//添加鼠标滚轮效果
+$(document).on('mousewheel', function (event) {
+    console.log(event.deltaX, event.deltaY, event.deltaFactor);
+    console.log(element.offset().left);
+    console.log(element.get(0).getBoundingClientRect().left);
+    var elementLeft = element.get(0).getBoundingClientRect().left;
+    //var offsetLeft = element.
+    if (event.deltaY == '-1') {
+        console.log('左滑');
+        element.animate({'left': elementLeft - 50}, 50)
+    } else {
+        element.animate({'left': elementLeft + 50}, 50)
+    }
+});
+
+
