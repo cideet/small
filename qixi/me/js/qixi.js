@@ -21,3 +21,11 @@ $.each(slides, function (index) {
         height: height + 'px'
     });
 });
+
+//点击页面向左运动2个画面
+$("button").eq(0).click(function () {
+    element.css({
+        'transition': 'transform 5s linear',
+        'transform': 'translate3d(-' + (width * 2) + 'px,0,0)'
+    });
+});
