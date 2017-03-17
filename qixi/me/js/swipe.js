@@ -34,6 +34,7 @@ function Swipe(container) {
         //console.log(event.deltaX, event.deltaY, event.deltaFactor);
         //console.log(element.offset().left);
         //console.log(element.get(0).getBoundingClientRect().left);
+        console.log(element.get(0).getBoundingClientRect());
         var elementLeft = element.get(0).getBoundingClientRect().left;
         if (event.deltaY == '-1') {
             console.log('左滑');

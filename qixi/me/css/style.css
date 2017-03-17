@@ -56,5 +56,14 @@ ul, li {
     background: #ddd;
 }
 
+.boy {
+    width: 151px;
+    height: 291px;
+    background: url("../images/boy.png") -0px -291px no-repeat;
+    position: absolute;
+    left: 6%;
+    top: 55%;
+}
+
 
 
