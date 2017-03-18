@@ -68,7 +68,7 @@
 
     $("button").eq(2).click(function () {
         boy.walkTo(2000, 0.5).then(function () {
-            boy.setColoer('red');
+            swipe.scrollTo($("#content").width(), 3);
         }).then(function () {
             boy.walkTo(8000, 0.8);
         })
