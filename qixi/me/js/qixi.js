@@ -28,8 +28,41 @@ $boy.css({
 var visualWidth = $container.width();
 var visualHeight = $container.height();
 
+//计算移动距离
+function calculateDist(direction, proportion) {
+    return (direction == 'x' ? visualWidth : visualHeight) * proportion;
+}
+
 ////////////////////////////////////////////////////////
 //===================动画处理============================ //
 ////////////////////////////////////////////////////////
 
+//恢复走路
+function restorWalk() {
+    $boy.removeClass('pause-walk');
+}
+
+//小男孩动起来
+function slowWalk() {
+    $boy.addClass("slow-walk");
+}
+
+function startRun(options, runTime) {
+    var dfdPlay = $.Deferred();
+    restorWalk();
+    $boy.transition(options, runTime, 'linear', function () {
+    });
+    return dfdPlay;
+}
+
+//开始走路
+function walkRun(time, disX, disY) {
+    time = time || 3000;
+    slowWalk();
+    var d1 = startRun({
+        left: disX + 'px',
+        top: disY ? disY : undefined
+    }, time);
+    return d1;
+}
 

@@ -34,7 +34,7 @@
     <button>切换页面</button>
     <button>小孩动起来</button>
     <button>小孩向前走</button>
-    <button>小孩暂停</button>
+    <button>暂停</button>
 </div>
 
 <script src="js/jquery.min.js"></script>
@@ -51,17 +51,16 @@
     });
     //小孩开始走路
     $("button").eq(1).click(function () {
-        $boy.addClass("slow-walk");
+        slowWalk();
     });
     $("button").eq(2).click(function () {
-        $boy.transition({
-            'left': $("#content").width() + 'px'
-        }, 10000, 'linear', function () {
-        });
+        var disX = calculateDist('x', 0.5);
+        var disY = calculateDist('y', 0.5);
+        walkRun(10000, disX, disY);
     });
-    $("button").eq(3).click(function(){
+    $("button").eq(3).click(function () {
         var left = $boy.css('left');
-        $boy.css('left',left);
+        $boy.css('left', left);
         $boy.addClass('pause-walk');
     });
     //监听鼠标中键滑动
