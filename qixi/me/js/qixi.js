@@ -3,7 +3,8 @@
  */
 
 $boy = $('#boy');
-var swipe = Swipe($("#content"));
+$container = $("#content");
+var swipe = Swipe($container);
 function getDataByClass(className) {
     var $element = $('' + className + '');
     return {
@@ -22,3 +23,13 @@ var pathY = function () {
 $boy.css({
     top: pathY - $boy.height() + 25
 });
+
+//页面可视区域
+var visualWidth = $container.width();
+var visualHeight = $container.height();
+
+////////////////////////////////////////////////////////
+//===================动画处理============================ //
+////////////////////////////////////////////////////////
+
+
