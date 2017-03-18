@@ -23,6 +23,7 @@
                 <div class="a-background-middle"></div>
                 <div class="a-background-bottom"></div>
             </div>
+            <div id="sun"></div>
         </li>
         <li>页面2</li>
         <li>页面3</li>
@@ -67,6 +68,7 @@
     });
 
     $("button").eq(2).click(function () {
+        $("#sun").addClass("rotation");
         boy.walkTo(2000, 0.5).then(function () {
             swipe.scrollTo($("#content").width(), 3);
         }).then(function () {
@@ -74,14 +76,14 @@
         })
     });
 
-
     //小孩停住
     $("button").eq(3).click(function () {
         var left = $boy.css('left');
         $boy.css('left', left);
         $boy.addClass('pause-walk');
     });
-    //异步编辑
+
+    //异步加载动画
     $("button").eq(4).click(function () {
         var disX = calculateDist('x', 0.3);
 //        $boy.animate({left: '300px'}, 1000, function () {
