@@ -32,10 +32,12 @@
 
 <div class="button">
     <button>切换页面</button>
-    <button>小孩走路</button>
+    <button>小孩动起来</button>
+    <button>小孩向前走</button>
 </div>
 
 <script src="js/jquery.min.js"></script>
+<script src="js/jquery.transit.js"></script>
 <script src="js/jquery.mousewheel.js"></script>
 <script src="js/swipe.js"></script>
 <script>
@@ -67,6 +69,12 @@
     $("button").eq(1).click(function () {
         $("#boy").addClass("slow-walk");
     });
+    $("button").eq(2).click(function () {
+        $("#boy").transition({
+            'left': $("#content").width() + 'px'
+        }, 10000, 'linear', function () {
+        });
+    })
     //监听鼠标中键滑动
     $(document).on('mousewheel', function (event) {
         swipe.mousewheel(event, 50);
