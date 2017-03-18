@@ -7,7 +7,7 @@ function Swipe(container) {
     var slides = element.find('>');
     var width = container.width();
     var height = container.height();
-    console.log(width + "" + height);
+    // console.log(width + "" + height);
     //设置UL的高度和宽度
     element.css({
         width: width * slides.length + 'px',

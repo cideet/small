@@ -45,6 +45,17 @@
 <script src="js/qixi.js"></script>
 <script>
     $boy = $('#boy');
+    var $container = $('#content');
+    var swipe = Swipe($container);
+
+    var boy = BoyWalk();
+    var visualWidth = $container.width();
+    var visualHeight = $container.height();
+
+    //计算移动距离
+    function calculateDist(direction, proportion) {
+        return (direction == 'x' ? visualWidth : visualHeight) * proportion;
+    }
 
     //动画切换到第三屏
     $("button").eq(0).click(function () {
@@ -52,14 +63,18 @@
     });
     //小孩的脚动起来
     $("button").eq(1).click(function () {
-        slowWalk();
+        boy.boySlowWalk();
     });
-    //小孩走路
+
     $("button").eq(2).click(function () {
-        var disX = calculateDist('x', 0.5);
-        var disY = calculateDist('y', 0.5);
-        walkRun(10000, disX, disY);
+        boy.walkTo(2000, 0.5).then(function () {
+            boy.setColoer('red');
+        }).then(function () {
+            boy.walkTo(8000, 0.8);
+        })
     });
+
+
     //小孩停住
     $("button").eq(3).click(function () {
         var left = $boy.css('left');
