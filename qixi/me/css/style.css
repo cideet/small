@@ -141,6 +141,12 @@ ul, li {
     }
 }
 
+.pause-walk {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+    animation-play-state: paused;
+}
+
 
 
 
