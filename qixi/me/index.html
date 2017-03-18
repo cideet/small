@@ -49,20 +49,23 @@
     $("button").eq(0).click(function () {
         swipe.scrollTo($("#content").width() * 2, 3);
     });
-    //小孩开始走路
+    //小孩的脚动起来
     $("button").eq(1).click(function () {
         slowWalk();
     });
+    //小孩走路
     $("button").eq(2).click(function () {
         var disX = calculateDist('x', 0.5);
         var disY = calculateDist('y', 0.5);
         walkRun(10000, disX, disY);
     });
+    //小孩停住
     $("button").eq(3).click(function () {
         var left = $boy.css('left');
         $boy.css('left', left);
         $boy.addClass('pause-walk');
     });
+
     //监听鼠标中键滑动
     $(document).on('mousewheel', function (event) {
         swipe.mousewheel(event, 50);
