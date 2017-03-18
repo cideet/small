@@ -65,5 +65,83 @@ ul, li {
     top: 55%;
 }
 
+.slow-walk {
+    -webkit-animation-name: person-slow; /*规定 @keyframes 动画的名称。*/
+    -webkit-animation-duration: 950ms; /*规定动画完成一个周期所花费的秒或毫秒。默认是 0*/
+    -webkit-animation-iteration-count: infinite; /*规定动画被播放的次数。默认是 1。 infinite(循环播放)*/
+    -webkit-animation-timing-function: steps(1, start); /*动画切换的方式是一帧一帧的改变*/
+    -moz-animation-name: person-slow;
+    -moz-animation-duration: 950ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: steps(1, start)
+}
+
+.fast-walk {
+    -webkit-animation-name: person-slow; /*规定 @keyframes 动画的名称。*/
+    -webkit-animation-duration: 100ms; /*规定动画完成一个周期所花费的秒或毫秒。默认是 0*/
+    -webkit-animation-iteration-count: infinite; /*规定动画被播放的次数。默认是 1。 infinite(循环播放)*/
+    -webkit-animation-timing-function: steps(1, start); /*动画切换的方式是一帧一帧的改变*/
+    -moz-animation-name: person-slow;
+    -moz-animation-duration: 950ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: steps(1, start)
+}
+
+@-webkit-keyframes person-slow {
+    0% {
+        background-position: 0 -291px;
+    }
+    25% {
+        background-position: -602px 0;
+    }
+    50% {
+        background-position: -302px -291px;
+    }
+    75% {
+        background-position: -151px -291px;
+    }
+    100% {
+        background-position: 0 -291px;
+    }
+}
+
+@-moz-keyframes person-slow {
+    0% {
+        background-position: 0 -291px;
+    }
+    25% {
+        background-position: -602px 0;
+    }
+    50% {
+        background-position: -302px -291px;
+    }
+    75% {
+        background-position: -151px -291px;
+    }
+    100% {
+        background-position: 0 -291px;
+    }
+}
+
+@keyframes person-slow {
+    0% {
+        background-position: 0 -291px;
+    }
+    25% {
+        background-position: -602px 0;
+    }
+    50% {
+        background-position: -302px -291px;
+    }
+    75% {
+        background-position: -151px -291px;
+    }
+    100% {
+        background-position: 0 -291px;
+    }
+}
+
+
+
 
 

@@ -29,9 +29,11 @@ function Swipe(container) {
             'transform': 'translate3d(-' + x + 'px,0,0)'
         });
     };
+
     //监控鼠标滚轮事件
     swipe.mousewheel = function (event, distance) {
-        //console.log(event.deltaX, event.deltaY, event.deltaFactor);
+        console.log(event);
+        console.log(event.deltaX, event.deltaY, event.deltaFactor);
         //console.log(element.offset().left);
         //console.log(element.get(0).getBoundingClientRect().left);
         console.log(element.get(0).getBoundingClientRect());
@@ -39,8 +41,10 @@ function Swipe(container) {
         if (event.deltaY == '-1') {
             console.log('左滑');
             element.animate({'left': elementLeft - distance}, 50);
-        } else {
+            $("#boy").removeClass("fast-walk").addClass("slow-walk");
+        } else if (event.deltaY == '1') {
             element.animate({'left': elementLeft + distance}, 50);
+            $("#boy").removeClass('slow-walk').addClass("fast-walk");
         }
     };
     return swipe;

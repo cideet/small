@@ -31,7 +31,8 @@
 </div>
 
 <div class="button">
-    <button>点击切换页面</button>
+    <button>切换页面</button>
+    <button>小孩走路</button>
 </div>
 
 <script src="js/jquery.min.js"></script>
@@ -62,9 +63,14 @@
     $("button").eq(0).click(function () {
         swipe.scrollTo($("#content").width() * 2, 3);
     });
+    //小孩开始走路
+    $("button").eq(1).click(function () {
+        $("#boy").addClass("slow-walk");
+    });
     //监听鼠标中键滑动
     $(document).on('mousewheel', function (event) {
         swipe.mousewheel(event, 50);
+        $("#boy").addClass("slow-walk");
     });
 
 </script>
