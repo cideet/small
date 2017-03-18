@@ -41,26 +41,9 @@
 <script src="js/jquery.transit.js"></script>
 <script src="js/jquery.mousewheel.js"></script>
 <script src="js/swipe.js"></script>
+<script src="js/qixi.js"></script>
 <script>
-    var swipe = Swipe($("#content"));
-    function getDataByClass(className) {
-        var $element = $('' + className + '');
-        return {
-            'height': $element.height(),
-            'top': $element.get(0).getBoundingClientRect().top
-            //'top': $element.position().top
-        }
-    }
-    //路的Y轴
-    var pathY = function () {
-        var data = getDataByClass(".a-background-middle");
-        return data.top + data.height / 2
-    }();
-    //修正小男孩的位置
-    //路的中间位置-小孩的高度，25只是一个修正值
-    $("#boy").css({
-        top: pathY - $("#boy").height() + 25
-    });
+    $boy = $('#boy');
 
     //动画切换到第三屏
     $("button").eq(0).click(function () {
@@ -68,23 +51,23 @@
     });
     //小孩开始走路
     $("button").eq(1).click(function () {
-        $("#boy").addClass("slow-walk");
+        $boy.addClass("slow-walk");
     });
     $("button").eq(2).click(function () {
-        $("#boy").transition({
+        $boy.transition({
             'left': $("#content").width() + 'px'
         }, 10000, 'linear', function () {
         });
     });
     $("button").eq(3).click(function(){
-        var left = $("#boy").css('left');
-        $("#boy").css('left',left);
-        $("#boy").addClass('pause-walk');
+        var left = $boy.css('left');
+        $boy.css('left',left);
+        $boy.addClass('pause-walk');
     });
     //监听鼠标中键滑动
     $(document).on('mousewheel', function (event) {
         swipe.mousewheel(event, 50);
-        $("#boy").addClass("slow-walk");
+        $boy.addClass("slow-walk");
     });
 
 </script>
