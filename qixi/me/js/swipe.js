@@ -43,6 +43,7 @@ function Swipe(container) {
             element.animate({'left': elementLeft - distance}, 50);
             $("#boy").removeClass("fast-walk").addClass("slow-walk");
         } else if (event.deltaY == '1') {
+            console.log('右滑');
             element.animate({'left': elementLeft + distance}, 50);
             $("#boy").removeClass('slow-walk').addClass("fast-walk");
         }

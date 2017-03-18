@@ -23,7 +23,13 @@
                 <div class="a-background-middle"></div>
                 <div class="a-background-bottom"></div>
             </div>
+            <!-- 太阳 -->
             <div id="sun"></div>
+            <!-- 云 -->
+            <div class="cloud-area">
+                <div class="cloud cloud1"></div>
+                <div class="cloud cloud2"></div>
+            </div>
         </li>
         <li>页面2</li>
         <li>页面3</li>
@@ -69,6 +75,8 @@
 
     $("button").eq(2).click(function () {
         $("#sun").addClass("rotation");
+        $(".cloud:first").addClass('cloud1-anim');
+        $(".cloud:last").addClass('cloud2-anim');
         boy.walkTo(2000, 0.5).then(function () {
             swipe.scrollTo($("#content").width(), 3);
         }).then(function () {
