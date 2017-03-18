@@ -44,7 +44,7 @@ function restorWalk() {
 
 //小男孩动起来
 function slowWalk() {
-    $boy.addClass("slow-walk");
+    $boy.removeClass('pause-walk').addClass("slow-walk");
 }
 
 function startRun(options, runTime) {
