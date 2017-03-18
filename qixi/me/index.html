@@ -70,8 +70,36 @@
     $("button").eq(4).click(function () {
         var disX = calculateDist('x', 0.3);
         $boy.animate({left: '300px'}, 1000, function () {
-            $boy.animate({left: '800px'}, 500);
+            $boy.animate({left: '800px'}, 500,function(){
+                $boy.animate({left: '1200px'},5000);
+            });
         });
+//        function animate1(){
+//            var dtd = $.Deferred();     //生成Deferred对象
+//            $boy.animate({left: '300px'},1000,function(){
+//                dtd.resolve();          // 改变Deferred对象的执行状态
+//            });
+//            return dtd;
+//        }
+//        function animate2(){
+//            var dtd = $.Deferred();
+//            $boy.animate({left: '800px'},500,function(){
+//                dtd.resolve();
+//            });
+//            return dtd;
+//        }
+//        function animate3(){
+//            var dtd = $.Deferred();
+//            $boy.animate({left: '1200px'},5000,function(){
+//                dtd.resolve();
+//            });
+//            return dtd;
+//        }
+//        animate1().then(function(){
+//            animate2();
+//        }).then(function(){
+//            animate3();
+//        })
     });
 
     //监听鼠标中键滑动
