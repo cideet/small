@@ -145,14 +145,6 @@
         });
     });
 
-    function pauseWalk(){
-        var dtd = $.Deferred();
-        pauseWalk11(function(){
-            dtd.resolve();
-        });
-        return dtd;
-    }
-
     //监听鼠标中键滑动
     $(document).on('mousewheel', function (event) {
         swipe.mousewheel(event, 50);
