@@ -76,11 +76,34 @@ function BoyWalk() {
         return dc;
     }
 
-    return {
+    //小男孩只走一步
+    function oneWalk(){
+        var dtd = $.Deferred();
+        slowWalk();
+        dtd.resolve();
+        return dtd;
+    }
 
+    return {
         //小孩的脚动起来
         boySlowWalk: function () {
             slowWalk();
+        },
+        //小孩只走一步
+        boyOneWalk: function () {
+            var dtd = $.Deferred();
+            slowWalk();
+            dtd.resolve();
+            return dtd;
+        },
+        //小孩走一步就停止
+        boyOneStop: function(){
+            var dtd = $.Deferred();
+            setTimeout(function(){
+                $boy.addClass('pause-walk');
+            },950);
+            dtd.resolve();
+            return dtd;
         },
         //开始走路
         walkTo: function (time, proportionX, proportionY) {
@@ -91,9 +114,6 @@ function BoyWalk() {
         //停止走路
         stopWalk: function () {
             pauseWalk();
-        },
-        setColoer:function(value){
-            $boy.css('background-color',value)
         }
     }
 }
