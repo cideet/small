@@ -8,13 +8,15 @@ h1 {
     font-size: 33px;
 }
 
+@width900: 900px;
+
 article.sound {
-    width: 900px;
+    width: @width900;
     margin: 50px auto;
     outline: 1px solid red;
     font-size: 0;
     section.sound-content {
-        width: 450px;
+        width: @width900/2;
         display: inline-block;
         font-size: 18px;
         a img {
@@ -24,5 +26,5 @@ article.sound {
 }
 
 body {
-    background:blue;
+    background: blue;
 }
