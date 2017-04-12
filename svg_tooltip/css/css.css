@@ -11,6 +11,7 @@ article.sound{
     width:800px;
     margin:50px auto;
     outline:1px solid red;
+    font-size:0;
 }
 article.sound section.sound-content{
     width:400px;
