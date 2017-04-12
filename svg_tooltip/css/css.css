@@ -1,0 +1,18 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: rgba(78, 24, 24, 0.81);
+    font-size: 33px;
+}
+article.sound{
+    width:800px;
+    margin:50px auto;
+    outline:1px solid red;
+}
+article.sound section.sound-content{
+    width:400px;
+    display:inline-block;
+}

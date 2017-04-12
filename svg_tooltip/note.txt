@@ -1,0 +1,7 @@
+Chrome调试CSS样式
+add folder to workspace
+
+选择服务器上的文件，映射到文件系统当中
+map to file system resourse
+
+选择文件系统当中的文件，映射到网络当中的资源
