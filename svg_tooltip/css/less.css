@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  color: rgba(78, 24, 24, 0.81);
+  font-size: 33px;
+}
+article.sound {
+  width: 900px;
+  margin: 50px auto;
+  outline: 1px solid red;
+  font-size: 0;
+}
+article.sound section.sound-content {
+  width: 450px;
+  display: inline-block;
+  font-size: 18px;
+}
+article.sound section.sound-content a img {
+  border-radius: 50%;
+}
+body {
+  background: blue;
+}

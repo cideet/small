@@ -5,3 +5,10 @@ add folder to workspace
 map to file system resourse
 
 选择文件系统当中的文件，映射到网络当中的资源
+
+
+npm install -g less
+
+在less.less下，自动多了一个less.css，并在页面中自动引用。
+
+经过安装，多了一个lessc的命令，可以采用（lessc less.less hand.css）命令，手动将less.less编译到hand.css。
