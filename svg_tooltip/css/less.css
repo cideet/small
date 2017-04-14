@@ -97,7 +97,7 @@ h1 {
   padding: 25px;
 }
 .sound-article .sound#sound-2 .sound-content svg polygon {
-  stroke-dasharray: 100;
+  stroke-dasharray: 1500;
 }
 .sound-article .sound:hover#sound-1 .sound-content svg path {
   opacity: 1;
