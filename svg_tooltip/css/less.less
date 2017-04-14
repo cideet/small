@@ -61,7 +61,7 @@ h1 {
             p {
                 position: relative;
                 margin: 0;
-                transition: 0.2s 0.35s;
+                transition: 0.3s;
                 opacity: 0;
                 line-height: 150%;
             }
@@ -70,6 +70,12 @@ h1 {
             left: -80px;
             top: 0;
             padding: 25px 60px 20px 30px;
+            svg {
+                path {
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                }
+            }
         }
         &#sound-2 .sound-content {
             left: 50%;
@@ -79,15 +85,17 @@ h1 {
         }
         &:hover {
             &#sound-1 .sound-content {
-                border: 1px solid black;
-
+                svg {
+                    path {
+                        opacity: 1;
+                    }
+                }
                 p {
                     opacity: 1;
                     transform: translate(0, 0);
                 }
             }
             &#sound-2 .sound-content {
-                border: 1px solid black;
                 p {
                     opacity: 1;
                     transform: translate(0, 0);
