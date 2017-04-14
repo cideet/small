@@ -73,7 +73,22 @@ h1 {
             svg {
                 path {
                     opacity: 0;
-                    transition: opacity 0.3s ease;
+                    transform: scale(0.3);
+                    transform-origin: center;
+                    transition: opacity 0.3s ease,
+                    transform 0.3 ease;
+                }
+                #path1 {
+                    transition-delay: 0;
+                }
+                #path2 {
+                    transition-delay: 0.1s;
+                }
+                #path3 {
+                    transition-delay: 0.2s;
+                }
+                #path4 {
+                    transition-delay: 0.3s;
                 }
             }
         }
@@ -88,6 +103,7 @@ h1 {
                 svg {
                     path {
                         opacity: 1;
+                        transform: scale(1);
                     }
                 }
                 p {

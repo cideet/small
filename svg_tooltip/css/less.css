@@ -73,7 +73,22 @@ h1 {
 }
 .sound-article .sound#sound-1 .sound-content svg path {
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transform: scale(0.3);
+  transform-origin: center;
+  transition: opacity 0.3s ease,
+                    transform 0.3 ease;
+}
+.sound-article .sound#sound-1 .sound-content svg #path1 {
+  transition-delay: 0;
+}
+.sound-article .sound#sound-1 .sound-content svg #path2 {
+  transition-delay: 0.1s;
+}
+.sound-article .sound#sound-1 .sound-content svg #path3 {
+  transition-delay: 0.2s;
+}
+.sound-article .sound#sound-1 .sound-content svg #path4 {
+  transition-delay: 0.3s;
 }
 .sound-article .sound#sound-2 .sound-content {
   left: 50%;
@@ -83,6 +98,7 @@ h1 {
 }
 .sound-article .sound:hover#sound-1 .sound-content svg path {
   opacity: 1;
+  transform: scale(1);
 }
 .sound-article .sound:hover#sound-1 .sound-content p {
   opacity: 1;
