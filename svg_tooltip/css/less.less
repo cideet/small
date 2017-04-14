@@ -48,6 +48,16 @@ h1 {
             width: 200px;
             height: 100px;
             box-sizing: border-box;
+            svg {
+                position: absolute;
+                left: 0;
+                top: 0;
+                path, polygon {
+                    fill: white;
+                    stroke: orange;
+                    stroke-width: 6px;
+                }
+            }
             p {
                 position: relative;
                 margin: 0;
@@ -70,6 +80,7 @@ h1 {
         &:hover {
             &#sound-1 .sound-content {
                 border: 1px solid black;
+
                 p {
                     opacity: 1;
                     transform: translate(0, 0);

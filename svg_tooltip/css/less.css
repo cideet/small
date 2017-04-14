@@ -48,6 +48,17 @@ h1 {
   height: 100px;
   box-sizing: border-box;
 }
+.sound-article .sound .sound-content svg {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.sound-article .sound .sound-content svg path,
+.sound-article .sound .sound-content svg polygon {
+  fill: white;
+  stroke: orange;
+  stroke-width: 6px;
+}
 .sound-article .sound .sound-content p {
   position: relative;
   margin: 0;
