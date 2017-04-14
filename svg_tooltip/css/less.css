@@ -98,6 +98,8 @@ h1 {
 }
 .sound-article .sound#sound-2 .sound-content svg polygon {
   stroke-dasharray: 1500;
+  stroke-dashoffset: -1500;
+  transition: 1s;
 }
 .sound-article .sound:hover#sound-1 .sound-content svg path {
   opacity: 1;
@@ -106,6 +108,9 @@ h1 {
 .sound-article .sound:hover#sound-1 .sound-content p {
   opacity: 1;
   transform: translate(0, 0);
+}
+.sound-article .sound:hover#sound-2 .sound-content svg polygon {
+  stroke-dashoffset: 0;
 }
 .sound-article .sound:hover#sound-2 .sound-content p {
   opacity: 1;
