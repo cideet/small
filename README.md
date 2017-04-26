@@ -23,5 +23,13 @@ RegExp
 christmas
 H5+JS+CSS3 实现圣诞情缘
 
-svg-tooltip
+svg_tooltip
 SVG实现Tooltip气泡效果
+
+callback
+回调函数的写法
+
+intervalAndTimeout
+setInterval和setTimeout的用法
+
+
