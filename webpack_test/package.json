@@ -1,0 +1,33 @@
+{
+  "name": "jinwosi",
+  "version": "1.0.0",
+  "description": "animate.css\r http://fodder.vdouw.com/html5/animate.css/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js --progress --colors --display-modules --display-reasons"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.coding.net/zhangfengsan/jinwosi.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^6.7.7",
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-latest": "^6.24.1",
+    "css-loader": "^0.28.1",
+    "file-loader": "^0.11.1",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.28.0",
+    "img-loader": "^2.0.0",
+    "less": "^2.7.2",
+    "postcss-loader": "^1.3.3",
+    "style-loader": "^0.17.0",
+    "url-loader": "^0.5.8",
+    "webpack": "^2.4.1"
+  }
+}
