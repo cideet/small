@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8"/>
-    <title>图片预加载</title>
+    <title>图片没有使用预加载的效果</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,6 +19,7 @@
     <span data-control="next">下一页</span>
 </p>
 <h1>这是没有预加载的页面</h1>
+<h3></h3>
 <script>
     var imgs = [
         'http://pic1.win4000.com/pic/9/a3/7e591391054.jpg',
@@ -36,10 +37,9 @@
         } else {
             index = Math.min(len - 1, ++index);
         }
-        document.title = (index + 1) + "/" + len;
+        $('h3').html((index + 1) + "/" + len);
         $('img').attr('src', imgs[index]);
     });
-
 </script>
 </body>
 </html>
