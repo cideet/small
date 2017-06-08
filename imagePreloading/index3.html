@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="utf-8"/>
-    <title>图片使用预加载的效果</title>
+    <title>图片使用预加载的效果，改写成jquery插件</title>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,6 +21,8 @@
 <h1>这是没有预加载的页面</h1>
 <h3></h3>
 <div class="loading"><i>0%</i></div>
+
+<script src="prevloading.js"></script>
 <script>
     var imgs = [
         'http://pic1.win4000.com/pic/9/a3/7e591391054.jpg',
@@ -32,19 +34,17 @@
     ];
     var index = 0;
     var len = imgs.length;
-    var count = 0;
-    $.each(imgs, function (index, src) {
-        var imgObj = new Image();
-        $(imgObj).on('load error', function () {
+    // var count = 0;
+    $.preload(imgs, {
+        each: function (count) {
             $('i').html(Math.round((count + 1) / len * 100) + '%');
-            if (count >= len - 1) {
-                $('.loading').hide();
-                $('h3').html("1/" + len);
-            }
-            count++;
-        });
-        imgObj.src = src;
+        },
+        all: function () {
+            $('.loading').hide();
+            $('h3').html("1/" + len);
+        }
     });
+
     $('span').on('click', function () {
         if ($(this).attr('data-control') == 'prev') {
             index = Math.max(0, --index);
