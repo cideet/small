@@ -14,17 +14,46 @@
         this.imgs = (typeof imgs == 'string') ? [imgs] : imgs;
         this.options = $.extend({}, PreLoad.DEFAULTS, options);
         // options覆盖DEFAULTS，再赋值给options
-        this._unordered();
+        // this._unorder();
         // 加下划线是表示内部执行，不在外部调用
+        if (this.options.order == 'order') {
+            this._order();
+        } else {
+            this._unorder();
+        }
     }
 
     PreLoad.DEFAULTS = {
+        order: 'unorder',       // 默认无序预加载
         each: null,     //每一张加载完毕后执行
         all: null       //所有图片加载完毕后执行
     };
 
+    // 有序加载
+    PreLoad.prototype._order = function () {
+        var imgs = this.imgs;
+        var options = this.options;
+        var count = 0;
+        var len = imgs.length;
+        load();
+        function load() {
+            var imgObj = new Image();
+            $(imgObj).on('load error', function () {
+                options.each && options.each(count);
+                if (count >= len) {
+                    // 所有图片已加载完毕
+                    options.all && options.all();
+                } else {
+                    load();
+                }
+                count++;
+            })
+            imgObj.src = imgs[count];
+        }
+    };
+
     // 无序加载
-    PreLoad.prototype._unordered = function () {
+    PreLoad.prototype._unorder = function () {
         var imgs = this.imgs;
         var options = this.options;
         var count = 0;
@@ -49,8 +78,8 @@
     };
 
     $.extend({
-        preload:function(imgs,opts){
-            new PreLoad(imgs,opts);
+        preload: function (imgs, opts) {
+            new PreLoad(imgs, opts);
         }
     });
 })(jQuery);
