@@ -25,8 +25,8 @@
 
     PreLoad.DEFAULTS = {
         order: 'unorder',       // 默认无序预加载
-        each: null,     //每一张加载完毕后执行
-        all: null       //所有图片加载完毕后执行
+        each: null,             // 每一张加载完毕后执行
+        all: null               // 所有图片加载完毕后执行
     };
 
     // 有序加载
