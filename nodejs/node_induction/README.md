@@ -21,6 +21,7 @@ OK，执行node 3index.js  打开localhost:8888，还是一个hello world矗立�
 
 请求一个   node 4index.js   ，你将会看到应用输出相应的信息，这表明我们的HTTP服务器已经在使用路由模块了，并会将请求的路径传递给路由
 
+执行 node 5index.js，打开localhost:8888/start，在node面板中显示“Request handler 'start' was called”，你应该懂了点什么。。
 
 
 
