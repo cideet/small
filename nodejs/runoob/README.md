@@ -7,6 +7,7 @@ node r2_server.js
 浏览器 Hello world
 终端 Server running at http://127.0.0.1:8888
 
+
 第3节 npm介绍
 比如安装express命令 npm install express
 全局安装 npm install ** -g
@@ -20,7 +21,16 @@ Node.js异步编程的直接体现就是回调。
 我们可以一边读取文件，一边执行其他命令，在文件读取完成后，我们将文件内容作为回调函数的参数返回。
 这样在执行代码就没有阻塞，提升性能，可以处理大并发请求。
 
+// 阻塞代码实例
+node r5_main.js
+zhangsanfengWeb:vdouw.com
+程序执行结束
 
+// 非阻塞代码实例
+程序执行结束
+zhangsanfengWeb:vdouw.com
+
+注意顺序
 
 
 
