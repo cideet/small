@@ -6,7 +6,9 @@ Node.js安装包及源码下载地址为：https://nodejs.org/en/download/
 node r2_server.js
 浏览器 Hello world
 终端 Server running at http://127.0.0.1:8888
-
+1、引入http模块：通过require指令载入node.js的http模块；
+2、创建服务器：http.createServer()方法创建服务器，服务器可以监听客户端的请求，类似apache
+3、接收请求和响应请求：通过request和responese参数来接收和响应数据
 
 第3节 npm介绍
 比如安装express命令 npm install express
