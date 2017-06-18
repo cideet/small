@@ -67,3 +67,5 @@ EventEmitter 对象如果在实例化时发生错误，会触发 error 事件。
 
 
 
+
+
