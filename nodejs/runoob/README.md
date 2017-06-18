@@ -97,6 +97,11 @@ r10_hello2.js的变化：使用“module.exports = Hello”代替了“exports.w
 
 
 第12节 路由
+路由根据请求的URL和其他需要的GET或POST参数，执行相应的代码。
+我们需要的所有数据，都会包含在request对象中，该对象作为onRequest()回调函数的第一个参数传递。
+解析这些数据，需要url和querystring模块。
+
+
 
 
 第13节 全局对象
