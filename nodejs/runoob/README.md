@@ -70,6 +70,13 @@ EventEmitter 对象如果在实例化时发生错误，会触发 error 事件。
 
 
 第10节 模块系统
+为了让node.js的文件可以相互调用，node.js提供了一个简单的模块系统。
+模块是Node.js 应用程序的基本组成部分，文件和模块是一一对应的。换言之，一个 Node.js文件就是一个模块，这个文件可能是JavaScript代码、JSON等。
+node.js提供了exports和require两个对象用于引入文件，exports是模块公开的接口，require是用于从外部获取一个模块的接口，即所获取模的的exports对象。
+执行 node r10_main.js
+1、require引入r10_hello.js
+2、通过r10_hello.js的访问接口exports.world()
+3、r10_hello.js通过exports对象把world作为模块的访问接口，在r10_main.js中通过require()加载这个模块，然后就可以直接访问r10_hello.js中的exports对象的成员函数了。
 
 
 第11节 函数
