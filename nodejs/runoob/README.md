@@ -116,6 +116,13 @@ __dirname 表示当前执行脚本所在的目录
 第16节 GET/POST请求
 服务器需要跟浏览器打交道，如表单提交。
 获取GET请求内容
+get请求
+运行node r16_get.js
+在浏览器中运行http://localhost:3000/?name=zhangsanfeng&height=178看效果
+
+获取POST请求内容
+运行node r16_post.js
+在浏览器中运行http://localhost:3000看效果
 
 
 第17节 工具模块
