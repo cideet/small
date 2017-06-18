@@ -131,9 +131,12 @@ get请求
 第18节 WEB模块
 Web服务器，是指驻留于因特网上某种计算机程序，基本功能是提供Web信息浏览服务。
 node.js提供了http模块，主要用于搭建HTTP服务端和客户端。
+
 创建Web服务器，最基本的HTTP服务器架构，参照r18_server.js
 node r18_server.js 后
 才能打开：http://localhost:8081/r18_index.html
+
+创建Web客户端
 
 
 
