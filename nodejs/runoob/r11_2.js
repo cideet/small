@@ -8,4 +8,4 @@ function execute(someFunction, value) {
 
 execute(function (word) {
     console.log(word);
-}, 'Hellow');
+}, 'Hello');
