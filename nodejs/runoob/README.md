@@ -84,6 +84,8 @@ r10_hello2.js的变化：使用“module.exports = Hello”代替了“exports.w
 
 
 第11节 函数
+在JavaScript中，一个函数可以作为另一个函数的参数。我们可以先定义一个函数，然后传递，也可以在传递参数的地方直接定义函数。
+执行 node r11.js
 
 
 第12节 路由
