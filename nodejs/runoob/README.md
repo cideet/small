@@ -78,6 +78,10 @@ node.js提供了exports和require两个对象用于引入文件，exports是模�
 2、通过r10_hello.js的访问接口exports.world()
 3、r10_hello.js通过exports对象把world作为模块的访问接口，在r10_main.js中通过require()加载这个模块，然后就可以直接访问r10_hello.js中的exports对象的成员函数了。
 
+执行 node r10_main2.js
+
+r10_hello2.js的变化：使用“module.exports = Hello”代替了“exports.world = function(){}”。在外部引用该模块时，其接口对象就是要输出的Hello对象本身，而不是原先的exports。
+
 
 第11节 函数
 
