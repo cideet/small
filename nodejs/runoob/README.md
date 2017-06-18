@@ -54,6 +54,16 @@ node应用程序是如何工作的?
 在node应用程序中，执行异步操作的函数将回调函数作为最后一个参数，回调函数接收错误对象作为第一个参数。
 
 
+第7节 EventEmitter
+node.js所有异步I/O操作，在完成时都会发送一个事件到事件队列。
+node.js的许多对象都会分发事件，比如net.Server对象会在每次新连接时分发一个事件，比如fs.readStream对象会在文件被打开时发出一个事件，这些产生的事件对象，都是events.EventEmitter的实例。
+
+events模块只提供一个对象：events.EventEmitter。
+EventEmitter的核心就是事件触发与事件监听器功能的封装。
+EventEmitter 对象如果在实例化时发生错误，会触发 error 事件。当添加新的监听器时，newListener 事件会触发，当监听器被移除时，removeListener 事件被触发。
+
+
+
 
 
 
