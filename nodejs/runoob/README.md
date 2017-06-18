@@ -102,9 +102,9 @@ r10_hello2.js的变化：使用“module.exports = Hello”代替了“exports.w
 解析这些数据，需要url和querystring模块。
 
 
-
-
 第13节 全局对象
+__filename 表示当前正在执行的脚本的文件名
+__dirname 表示当前执行脚本所在的目录
 
 
 第14节 常用工具
