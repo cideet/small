@@ -140,8 +140,26 @@ node r18_server.js 后
 新开一个终端，执行 node r18_client.js 看效果
 
 
-
 第19节 Express框架
+express是一个node.js web的应用框架，提供了一系列特性用于创建各种WEB应用和HTTP工具。
+使用express可以快速的搭建一个功能完整的网站。
+express框架核心：
+1、可以设置中间件来响应HTTP请求；
+2、定义了路由表用于执行不同的HTTP请求；
+3、向模板传递参数来动态渲染HTML页面。
+
+安装express
+npm isntall express --save
+npm install body-parser --save
+npm install cookie-parser --save
+npm install multer --save
+一起安装的模块还有：
+body-parser : node.js中间件，用于处理JSON
+cookie-parser : cookie解析工具，通过req.cookie可以取到传过来的cookie，并转成对象
+multer : node.js中间件，用于处理enctype="multipart/form-data"(设置表单的MIME编码)
+
+
+
 
 
 第20节 RESTful API
