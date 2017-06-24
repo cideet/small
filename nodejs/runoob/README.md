@@ -158,6 +158,8 @@ body-parser : node.js中间件，用于处理JSON
 cookie-parser : cookie解析工具，通过req.cookie可以取到传过来的cookie，并转成对象
 multer : node.js中间件，用于处理enctype="multipart/form-data"(设置表单的MIME编码)
 
+执行 node r19_express_demo.js
+实例中引入了express模块，并在客户端发起请求后，响应“Hello World”字符串。
 
 
 
