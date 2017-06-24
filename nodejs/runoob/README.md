@@ -137,6 +137,7 @@ node r18_server.js 后
 才能打开：http://localhost:8081/r18_index.html
 
 创建Web客户端
+新开一个终端，执行 node r18_client.js 看效果
 
 
 
