@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>无标题文档</title>
+    <script src="tldjs.js"></script>
+</head>
+<body>
+<p>当前时区：<b id="p5" style="color:red;"></b></p>
+<p>当前时区的时间：<b id="p1"></b></p>
+<p>当前时区的时间戳：<b id="p2"></b></p>
+<p>假定以下时间为加拿大时间：</p>
+<p>加拿大时间：<b id="p3"></b></p>
+<p>加拿大时间戳：<b id="p4"></b></p>
+<script>
+    var bjTime = new Date();
+    var bjTimezone = Date.parse(bjTime);
+    document.getElementById('p1').innerHTML = bjTime;
+    document.getElementById('p2').innerHTML = bjTimezone;
+    var timezone = jstz.determine();
+    var thisTimezoneName = timezone.name();  // "Asia/Shanghai"
+    document.getElementById('p5').innerHTML = thisTimezoneName;
+    console.log(thisTimezoneName);
+    if (thisTimezoneName == "Asia/Shanghai") {
+        var jndTimezone = bjTimezone - 43200000;
+        var jnaTime = new Date(bjTimezone - 43200000);
+        console.log(jndTimezone);
+        document.getElementById('p3').innerHTML = jnaTime;
+        document.getElementById('p4').innerHTML = jndTimezone;
+    }
+    //    for (var i in timezone) {
+    //        document.write('<br>' + i + ":" + timezone[i] + '<br>');
+    //    }
+    document.write('使用getTimezoneOffset()根据GMT来取得本地时区：' + (new Date().getTimezoneOffset()/60));
+</script>
+</body>
+</html>

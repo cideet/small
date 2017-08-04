@@ -198,6 +198,12 @@ res.set()：设置HTTP头，传入object可以一次设置多个头
 res.status()：设置HTTP状态码
 res.type()：设置Content-Type的MIME类型
 
+路由
+路由决定了由谁（脚本）去响应客户端请求，通过路由去提取请求的URL、GET/POST参数。
+
+
+
+
 
 
 
