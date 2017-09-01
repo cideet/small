@@ -32,8 +32,4 @@ callback
 intervalAndTimeout
 setInterval和setTimeout的用法
 
-mobileCapture
-手机捕获系统默认设备
-
-
 
