@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<body>
+
+<p>accept表示直接打开系统文件目录。</p>
+<p>capture表示可以捕获到系统默认的设备</p>
+<p>比如：camera--照相机；camcorder--摄像机；microphone--录音。</p>
+
+<hr/>
+
+<p>调用手机的拍照功能和直接打开系统文件目录。</p>
+<p><input type="file" accept="image/*" capture="camera"></p>
+<p><input type="file" capture="camera"></p>
+<p><input type="file" accept="image/*"></p>
+
+<hr/>
+
+<p>调用手机的录像功能和直接打开系统文件目录。</p>
+<input type="file" accept="video/*" capture="camcorder">
+
+<hr/>
+
+<p>调用手机的录像功能和直接打开系统文件目录。苹果手机调出来的是拍照和录像安卓手机调出来的录音功能</p>
+<input type="file" accept="audio/*" capture="microphone">
+
+<hr/>
+
+<p>input:file标签还支持一个multiple属性，表示可以支持多选,capture就没啥用了，因为multiple是专门用来支持多选的。</p>
+<input type="file" accept="audio/*" multiple>
+
+<hr/>
+
+<p>上传文件</p>
+<input type="file" name="">
+
+</body>
+</html>
