@@ -35,5 +35,8 @@ setInterval和setTimeout的用法
 mobileCapture
 手机捕获系统默认设备
 
+html2image
+页面中的某个DIV截图生成图片
+
 
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>html2canvas example</title>
+    <script type="text/javascript" src="html2canvas.js"></script>
+</head>
+<script type="text/javascript">
+    function takeScreenshot() {
+        console.log('test');
+        html2canvas(document.getElementById('view'), {
+            onrendered: function (canvas) {
+                console.log(convertCanvasToImage(canvas));
+                document.body.appendChild(canvas);
+                //window.location.href = '<img src="' + convertCanvasToImage(canvas) + '">'
+                document.write = '<a target="_blank" href="' + convertCanvasToImage(canvas) + '" >测试图片下载！</a>';
+            }
+        });
+    }
+
+    // 从 canvas 提取图片 image
+    function convertCanvasToImage(canvas) {
+        //新Image对象，可以理解为DOM
+        var image = new Image();
+        // canvas.toDataURL 返回的是一串Base64编码的URL，当然,浏览器自己肯定支持
+        // 指定格式 PNG
+        image.src = canvas.toDataURL("image/png");
+        return image;
+    }
+</script>
+<body>
+<div id="view" style="background:red url(test.jpg) no-repeat; width: 700px; height: 1500px;">
+    <input type="button" value="截图" onclick="takeScreenshot()">1111
+</div>
+</body>
+
+</html>
