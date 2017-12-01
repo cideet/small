@@ -5,99 +5,66 @@
 
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=2.0&ak=HXIypZPkv17i8AsRvKntyt9QyTcCeGOo"></script>
-    <title>根据关键字本地搜索</title>
+    <title>用户输入地址，百度地图返回搜索结果（多个）</title>
+    <script src="../jquery.min.js"></script>
 </head>
 <body>
-<!-- 百度地图显示 -->
 
-//引入 js
-<!-- 百度地图显示 -->
-<div id="container"
-     style="position: absolute;
-                margin-top:10px;
-                margin-left:800px;
-                width: 800px;
-                height: 500px;
-                top: 50;
-                border: 1px solid gray;
-                overflow:hidden;">
+<p>
+    <select id="city" class="mt-5">
+        <option value="北京">北京</option>
+        <option value="武汉">武汉</option>
+        <option value="南京">南京</option>
+    </select>
+</p>
+
+<input type="text" id="address" value="天安门"/>
+<div id="text">
+    <ul>
+        <!--<li><b>天安门</b><span>北京东城区</span></li>-->
+    </ul>
 </div>
 
-<div id="baiduLongitude"></div>
-<div id="baiduLatitude"></div>
-
+<br>
+<br>
+<br>
+用户输入地址，百度地图返回搜索结果（多个）
 
 <script>
 
-    //----------------------根据地址获取经纬度-------------------//
+    var sAddress = [];  //提示结果
+    var lAddress = {};
 
-    var map = new BMap.Map("container"); // 创建地图实例
-    var point = new BMap.Point(116.404, 39.915); // 创建点坐标
-    map.enableScrollWheelZoom();   //启动鼠标中键控制地图缩放
-    map.centerAndZoom(point, 15); // 初始化地图，设置中心点坐标和地图级别
-    map.enableContinuousZoom();    // 开启连续缩放效果
-    map.enableInertialDragging(); // 开启惯性拖拽效果
-    map.addControl(new BMap.NavigationControl()); // 添加控件
-    map.addControl(new BMap.ScaleControl());
-    map.addControl(new BMap.OverviewMapControl());
-    map.addControl(new BMap.MapTypeControl());
-    var map = new BMap.Map("container");//在指定的容器内创建地图实例
-    map.setDefaultCursor("crosshair");//设置地图默认的鼠标指针样式
-    map.enableScrollWheelZoom();//启用滚轮放大缩小，默认禁用。
-    map.centerAndZoom(new BMap.Point(116.124878, 24.309178), 13);
-    map.addControl(new BMap.NavigationControl());
-    //地图单击事件
-    map.addEventListener("click", function (e) {
-//    document.getElementById("lonlat").value = e.point.lng +", " + e.point.lat;
-//经纬度文本框赋值
-        document.getElementById("baiduLongitude").value = e.point.lng;
-        document.getElementById("baiduLatitude").value = e.point.lat;
-    });
-    function iploac(result) {//根据IP设置地图中心
-        var cityName = result.name;
-        map.setCenter(cityName);
-    }
-    var myCity = new BMap.LocalCity();
-    myCity.get(iploac);
+    document.getElementById('address').onkeyup = send;
 
+    console.log(sAddress);
+    function send() {
+        setTimeout(function () {
+            $.ajax({
+                url: 'http://api.map.baidu.com/place/v2/suggestion?query=' + $("#address").val() + '&region=' + $('#city').val() + '&city_limit=true&output=json&ak=HXIypZPkv17i8AsRvKntyt9QyTcCeGOo',
 
-    function sear(result) {//地图搜索
-        alert(result);
-        /* map.centerAndZoom(result, 13);
-         document.getElementById("baiduLongitude").value= e.point.lng;
-         document.getElementById("baiduLatitude").value = e.point.lat;*/
-        var local = new BMap.LocalSearch(map, {
-            renderOptions: {map: map}
-        });
-        local.search(result);
+                type: 'get',
+                dataType: 'JSONP',
+                //data: params,
+                success: function (result, status) {
+                    console.log(result);
+                    sAddress = result.result;
+                    var oHtml = '';
+                    for (var i = 0; i < sAddress.length; i++) {
+                        oHtml += '<li onclick="choose(' + i + ')"><b>' + sAddress[i]['name'] + '</b><span>' + sAddress[i]['city'] + sAddress[i]['district'] + '</span></li>'
+                    }
+                    $('#text ul').html(oHtml);
+                    console.log(sAddress);
+                }
+            });
+        }, 200)
     }
 
+    send();
 
-    //产生地图标记
-    initMap(); //创建和初始化地图
-    map.addEventListener("click", function (e) {
-        point = new BMap.Point(e.point.lng, e.point.lat);
-        var marker = new BMap.Marker(point);
-        map.addOverlay(marker);
-        document.getElementById("baiduLongitude").value = e.point.lng;
-        document.getElementById("baiduLatitude").value = e.point.lat;
-    });
-    var marker; //声明一个空标记
-    //以下是点击事件
-    map.addEventListener("click", function (e) {
-
-        checkMaker();
-
-        point = new BMap.Point(e.point.lng, e.point.lat);//捕捉点击的坐标值
-        marker = new BMap.Marker(point); //给标记赋新坐标值
-        map.addOverlay(marker); //添加新标记
-    });
-
-    function checkMaker() {
-
-        if (marker != null)
-
-            map.removeOverlay(marker); //如果marker已经存在，删除标记
+    function choose(o) {
+        lAddress = sAddress[o];
+        alert('当前你选择的具体地址是：\n' + JSON.stringify(lAddress));
     }
 
 </script>
