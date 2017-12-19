@@ -4,5 +4,6 @@
 
 node app.bundle.js
 
+学习详细 https://segmentfault.com/a/1190000004368132
 
 
