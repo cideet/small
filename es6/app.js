@@ -46,3 +46,18 @@ let dog3 = {type: 'animal', many: 2};
 let {type, many} = dog3;
 console.log(type, many);
 
+
+/**
+ * default rest
+ * @param types
+ */
+function animals(...types) {
+    console.log(types);
+}
+animals('cat', 'dog', 'fish');
+
+function animal4(type='cat'){
+    console.log(type);
+}
+animal4();
+

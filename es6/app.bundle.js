@@ -141,5 +141,25 @@ var type = dog3.type,
 
 console.log(type, many);
 
+/**
+ * default rest
+ * @param types
+ */
+function animals() {
+    for (var _len = arguments.length, types = Array(_len), _key = 0; _key < _len; _key++) {
+        types[_key] = arguments[_key];
+    }
+
+    console.log(types);
+}
+animals('cat', 'dog', 'fish');
+
+function animal4() {
+    var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'cat';
+
+    console.log(type);
+}
+animal4();
+
 /***/ })
 /******/ ]);
