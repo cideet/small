@@ -2,7 +2,25 @@
  * Created by sf on 2017/12/19.
  */
 
-let a = 111;
-let b = 222;
-var xxx = (c,d) => c*d;
-console.log(xxx(a,b));
+class Animal {
+    constructor() {
+        this.type = 'animal';
+    }
+
+    says(say) {
+        console.log(this.type + 'say' + say);
+    }
+}
+
+class Cat extends Animal {
+    constructor() {
+        super();
+        this.type = 'cat';
+    }
+}
+
+let animal = new Animal();
+animal.says('hello');
+
+let cat = new Cat();
+cat.says('helllo');
