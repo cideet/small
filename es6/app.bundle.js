@@ -82,6 +82,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * Created by sf on 2017/12/19.
  */
 
+/**
+ * class, extends, super
+ */
 var Animal = function () {
     function Animal() {
         _classCallCheck(this, Animal);
@@ -119,6 +122,24 @@ animal.says('hello');
 
 var cat = new Cat();
 cat.says('helllo');
+
+/**
+ * destructuring
+ * @type {string}
+ */
+var cat1 = 'ken';
+var dog1 = 'lili';
+var zoo1 = { cat1: cat1, dog1: dog1 }; // es5
+var zoo2 = { cat1: cat1, dog1: dog1 }; //es6
+console.log(zoo1); // { cat1: 'ken', dog1: 'lili' }
+console.log(zoo2); // { cat1: 'ken', dog1: 'lili' }
+
+// 反过来，可以这样写
+var dog3 = { type: 'animal', many: 2 };
+var type = dog3.type,
+    many = dog3.many;
+
+console.log(type, many);
 
 /***/ })
 /******/ ]);

@@ -5,9 +5,9 @@
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './src/app.js',
+    entry: './app.js',
     output: {
-        filename: './bin/app.bundle.js'
+        filename: './app.bundle.js'
     },
     module: {
         loaders: [
