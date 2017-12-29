@@ -38,5 +38,10 @@ mobileCapture
 html2image
 页面中的某个DIV截图生成图片
 
+DatePicker
+DatePicker组件开发
+https://www.imooc.com/learn/820
+https://github.com/DaiWanwan/Datapicker
+
 
 
