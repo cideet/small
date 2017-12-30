@@ -33,7 +33,7 @@
             if (i % 7 === 0) {
                 html += '<tr>';
             }
-            html += '<td>' + monthData['days'][i]['showDate'] + '</td>';
+            html += '<td data-date="' + monthData['days'][i].date + '">' + monthData['days'][i]['showDate'] + '</td>';
             if (i % 7 === 6) {
                 html += '</tr>';
             }
@@ -92,6 +92,7 @@
             }
         }, false);
 
+        //切换上一月和下一月
         $wrapper.addEventListener('click', function (e) {
             var $target = e.target;
             if (!$target.classList.contains('ui-datepicker-btn')) {
@@ -106,6 +107,31 @@
                 datepicker.render('next');
             }
         }, false);
+
+        $wrapper.addEventListener('click', function (e) {
+            var $target = e.target;
+            if ($target.tagName.toLowerCase() !== 'td') {
+                return;
+            }
+            var date = new Date(monthData.year, monthData.month - 1, $target.dataset.date);
+            $input.value = format(date);
+            $wrapper.classList.add('ui-datepicker-wrapper-show');
+            isOpen = false;
+        }, false);
     };
+
+    function format(date) {
+        var ret = '';
+        var padding = function (num) {
+            if (num <= 9) {
+                return '0' + num;
+            }
+            return num;
+        };
+        ret += date.getFullYear() + '-';
+        ret += padding(date.getMonth() + 1) + '-';
+        ret += padding(date.getDate());
+        return ret;
+    }
 
 })();
