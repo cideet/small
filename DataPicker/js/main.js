@@ -43,8 +43,15 @@
         return html;
     };
 
-    datepicker.init = function ($dom) {
-        $dom.innerHTML = datepicker.buildUi();
+    // datepicker.init = function ($dom) {
+    //     $dom.innerHTML = datepicker.buildUi();
+    // };
+
+    datepicker.init = function ($input) {
+        var $wrapper = document.createElement('div');
+        $wrapper.className = 'ui-datepicker-wrapper';
+        $wrapper.innerHTML = datepicker.buildUi();
+        document.body.appendChild($wrapper);
     };
 
 })();
