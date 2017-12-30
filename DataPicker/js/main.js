@@ -57,6 +57,11 @@
         $input.addEventListener('click', function () {
             if (isOpen) {
                 $wrapper.classList.remove('ui-datepicker-wrapper-show');
+                var left = $input.offsetLeft;
+                var top = $input.offsetTop;
+                var height = $input.offsetHeight;
+                $wrapper.style.top = top + height + 2 + 'px';
+                $wrapper.style.left = left + 'px';
                 isOpen = false;
             } else {
                 $wrapper.classList.add('ui-datepicker-wrapper-show');
