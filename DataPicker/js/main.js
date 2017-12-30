@@ -108,6 +108,7 @@
             }
         }, false);
 
+        //点击选择日期，填入input
         $wrapper.addEventListener('click', function (e) {
             var $target = e.target;
             if ($target.tagName.toLowerCase() !== 'td') {
@@ -116,7 +117,7 @@
             var date = new Date(monthData.year, monthData.month - 1, $target.dataset.date);
             $input.value = format(date);
             $wrapper.classList.add('ui-datepicker-wrapper-show');
-            isOpen = false;
+            isOpen = true;
         }, false);
     };
 
