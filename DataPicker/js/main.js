@@ -47,11 +47,22 @@
     //     $dom.innerHTML = datepicker.buildUi();
     // };
 
-    datepicker.init = function ($input) {
+    datepicker.init = function (input) {
         var $wrapper = document.createElement('div');
-        $wrapper.className = 'ui-datepicker-wrapper';
+        $wrapper.className = 'ui-datepicker-wrapper ui-datepicker-wrapper-show';
         $wrapper.innerHTML = datepicker.buildUi();
         document.body.appendChild($wrapper);
+        var $input = document.querySelector(input);
+        var isOpen = true;
+        $input.addEventListener('click', function () {
+            if (isOpen) {
+                $wrapper.classList.remove('ui-datepicker-wrapper-show');
+                isOpen = false;
+            } else {
+                $wrapper.classList.add('ui-datepicker-wrapper-show');
+                isOpen = true;
+            }
+        }, false);
     };
 
 })();

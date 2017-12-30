@@ -1,6 +1,9 @@
 /**
  * Created by zhangsanfeng on 2017/12/30.
  */
+.ui-datepicker-wrapper-show {
+  display: none;
+}
 .ui-datepicker-wrapper {
   width: 240px;
   font-size: 16px;
