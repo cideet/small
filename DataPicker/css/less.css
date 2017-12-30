@@ -31,7 +31,7 @@
   cursor: pointer;
   text-decoration: none;
 }
-.ui-datepicker-wrapper .ui-datepicker-header .ui-datepicker-btn.ui-datepicker-pre-btn {
+.ui-datepicker-wrapper .ui-datepicker-header .ui-datepicker-btn.ui-datepicker-prev-btn {
   float: left;
 }
 .ui-datepicker-wrapper .ui-datepicker-header .ui-datepicker-btn.ui-datepicker-next-btn {

@@ -4,11 +4,13 @@
 
 (function () {
     var datepicker = window.datepicker;
+    var monthData;
+    var $wrapper;
     datepicker.buildUi = function (year, month) {
-        var monthData = datepicker.getMonthData(year, month);
+        monthData = datepicker.getMonthData(year, month);
         console.log(monthData);
         var html = '<div class="ui-datepicker-header">' +
-            '<a href="#" class="ui-datepicker-btn ui-datepicker-pre-btn">&lt;</a>' +
+            '<a href="#" class="ui-datepicker-btn ui-datepicker-prev-btn">&lt;</a>' +
             '<a href="#" class="ui-datepicker-btn ui-datepicker-next-btn">&gt;</a>' +
             '<span class="ui-datepicker-curr-month">' + monthData["year"] + '-' + monthData["month"] + '</span>' +
             '</div>' +
@@ -47,11 +49,32 @@
     //     $dom.innerHTML = datepicker.buildUi();
     // };
 
+    datepicker.render = function (direction) {
+        var year, month;
+        if (monthData) {
+            year = monthData.year;
+            month = monthData.month;
+        }
+        if (direction == 'prev') {
+            month--;
+        }
+        if (direction == 'next') {
+            month++;
+        }
+        var innHtml = datepicker.buildUi(year, month);
+        $wrapper = document.querySelector('.ui-datepicker-wrapper');
+
+        if (!$wrapper) {
+            $wrapper = document.createElement('div');
+            document.body.appendChild($wrapper);
+            $wrapper.className = "ui-datepicker-wrapper ui-datepicker-wrapper-show";
+        }
+        $wrapper.innerHTML = innHtml;
+    };
+
     datepicker.init = function (input) {
-        var $wrapper = document.createElement('div');
-        $wrapper.className = 'ui-datepicker-wrapper ui-datepicker-wrapper-show';
-        $wrapper.innerHTML = datepicker.buildUi();
-        document.body.appendChild($wrapper);
+        $wrapper = document.createElement('div');
+        datepicker.render();
         var $input = document.querySelector(input);
         var isOpen = true;
         $input.addEventListener('click', function () {
@@ -66,6 +89,21 @@
             } else {
                 $wrapper.classList.add('ui-datepicker-wrapper-show');
                 isOpen = true;
+            }
+        }, false);
+
+        $wrapper.addEventListener('click', function (e) {
+            var $target = e.target;
+            if (!$target.classList.contains('ui-datepicker-btn')) {
+                return;
+            }
+            //如果点击了上一个月
+            if ($target.classList.contains('ui-datepicker-prev-btn')) {
+                datepicker.render('prev');
+            }
+            //如果点击了下一个月
+            if ($target.classList.contains('ui-datepicker-next-btn')) {
+                datepicker.render('next');
             }
         }, false);
     };
