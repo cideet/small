@@ -3,20 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Canvas绘制时钟 </title>
+    <title>Canvas绘制时钟</title>
     <style>
         div {
             text-align: center;
             margin-top: 100px;
         }
 
-        .cc{
-            width:1240px;
-            height:66px;
-            line-height:66px;
-            background:#bafdf4;
-            border:1px solid #00cab0;
+        .cc {
+            width: 1240px;
+            height: 66px;
+            line-height: 66px;
+            background: #bafdf4;
+            border: 1px solid #00cab0;
         }
+
         #clock {
             border: 1px solid #ccc;
         }
@@ -31,8 +32,10 @@
     <canvas id="clock" height="300px" width="300px"></canvas>
 </div>
 
+<div class="cc"></div>
+
 <script>
-    var dom = document.getElementById("clock");
+    var dom = document.getElementById("clock");  //获取Canvas元素
     var ctx = dom.getContext("2d");
     //	getContext() 方法可返回一个对象，该对象提供了用于在画布上绘图的方法和属性。
     //	本手册提供完整的 getContext("2d") 对象属性和方法，可用于在画布上绘制文本、线条、矩形、圆形等等。
@@ -45,7 +48,7 @@
         ctx.beginPath();
         ctx.lineWidth = 3;
         ctx.arc(0, 0, r - ctx.lineWidth / 2, 0, 2 * Math.PI, false);
-        ctx.stroke();
+        ctx.stroke();  //绘制定义的路径
 
         var hourNumber = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 1, 2];
         ctx.font = '18px Arial';
