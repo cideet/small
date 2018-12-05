@@ -93,31 +93,51 @@
         height: 50px;
         background: #399;
         margin: 0 2px;
+        -webkit-transform: scaleY(0.4);
+        -ms-transform: scaleY(0.4);
         transform: scaleY(0.4);
+        -webkit-animation: load 1.2s infinite;
         animation: load 1.2s infinite;
     }
 
     .loading-container .css3 i:nth-child(2) {
+        -webkit-animation-delay: 0.1s;
         animation-delay: 0.1s;
     }
 
     .loading-container .css3 i:nth-child(3) {
+        -webkit-animation-delay: 0.2s;
         animation-delay: 0.2s;
     }
 
     .loading-container .css3 i:nth-child(4) {
+        -webkit-animation-delay: 0.3s;
         animation-delay: 0.3s;
     }
 
     .loading-container .css3 i:nth-child(5) {
+        -webkit-animation-delay: 0.4s;
         animation-delay: 0.4s;
+    }
+
+    @-webkit-keyframes load {
+        0%, 40%, 100% {
+            -webkit-transform: scaleY(0.4);
+            transform: scaleY(0.4);
+        }
+        20% {
+            -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+        }
     }
 
     @keyframes load {
         0%, 40%, 100% {
+            -webkit-transform: scaleY(0.4);
             transform: scaleY(0.4);
         }
         20% {
+            -webkit-transform: scaleY(1);
             transform: scaleY(1);
         }
     }
