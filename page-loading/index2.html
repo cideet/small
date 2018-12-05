@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>定位在头部的进度条</title>
+    <link type="text/css" rel="stylesheet" href="css.css"/>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+
+<div class="loading-container">
+    <div class="top-loading-progress"></div>
+</div>
+
+<div class="div">
+    <img src="http://img18.3lian.com/d/file/201709/13/54504c3f3d655c97c58c67d402fce69a.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/4cc61324f5ff65610751296829b7f32d.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/5bb35dfb982ffa92a9ccb9e4358b0168.jpg"/>
+</div>
+<script>
+    $('.loading-container .top-loading-progress').animate({width: "20%"}, 100);
+</script>
+
+<div class="div">
+    <img src="http://img18.3lian.com/d/file/201709/13/54504c3f3d655c97c58c67d402fce69a.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/4cc61324f5ff65610751296829b7f32d.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/5bb35dfb982ffa92a9ccb9e4358b0168.jpg"/>
+</div>
+<script>
+    $('.loading-container .top-loading-progress').animate({width: "40%"}, 100);
+</script>
+
+<div class="div">
+    <img src="http://img18.3lian.com/d/file/201709/13/54504c3f3d655c97c58c67d402fce69a.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/4cc61324f5ff65610751296829b7f32d.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/5bb35dfb982ffa92a9ccb9e4358b0168.jpg"/>
+</div>
+<script>
+    $('.loading-container .top-loading-progress').animate({width: "60%"}, 100);
+</script>
+
+<div class="div">
+    <img src="http://img18.3lian.com/d/file/201709/13/54504c3f3d655c97c58c67d402fce69a.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/4cc61324f5ff65610751296829b7f32d.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/5bb35dfb982ffa92a9ccb9e4358b0168.jpg"/>
+</div>
+<script>
+    $('.loading-container .top-loading-progress').animate({width: "80%"}, 100);
+</script>
+
+<div class="div">
+    <img src="http://img18.3lian.com/d/file/201709/13/54504c3f3d655c97c58c67d402fce69a.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/4cc61324f5ff65610751296829b7f32d.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/5bb35dfb982ffa92a9ccb9e4358b0168.jpg"/>
+</div>
+<script>
+    $('.loading-container .top-loading-progress').animate({width: "100%"}, 100, function () {
+        $('.loading-container').fadeOut();
+    });
+</script>
+
+</body>
+</html>
