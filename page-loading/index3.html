@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>实时获取加载数据的进度条</title>
+    <link type="text/css" rel="stylesheet" href="css.css"/>
+    <script src="jquery.min.js"></script>
+</head>
+<body>
+
+<a href="index.html"><h1>页面加载loading</h1></a>
+<a href="index2.html"><h1>定位在头部的进度条</h1></a>
+<a href="index3.html"><h1>实时获取加载数据的进度条</h1></a>
+
+<div class="loading-container">
+    <div class="middle-loading-progress">
+        <span></span><b>0%</b>
+    </div>
+</div>
+
+<div class="div">
+    <img src="http://img18.3lian.com/d/file/201709/13/54504c3f3d655c97c58c67d402fce69a.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/4cc61324f5ff65610751296829b7f32d.jpg"/>
+    <img src="http://img18.3lian.com/d/file/201709/13/5bb35dfb982ffa92a9ccb9e4358b0168.jpg"/>
+</div>
+
+<script>
+    $(function () {
+        var img = $('img');
+        var num = 0;
+        img.each(function (i) {
+            var oImg = new Image();
+            oImg.onload = function () {
+                oImg.onload = null;
+                num++;
+                $('.loading-container b').html(parseInt(num / $('img').size() * 100) + "%");
+                if (num >= i) {
+                    $('.loading-container').fadeOut();
+                }
+            }
+            oImg.src = img[i].src;
+        })
+    });
+</script>
+
+
+</body>
+</html>
