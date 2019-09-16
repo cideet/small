@@ -14,33 +14,100 @@
 <div class="calc-container">
     <div class="calc-box">
         <div class="top">
-            <div class="history"></div>
-            <div class="in"></div>
-            <div class="out"></div>
+            <div class="history" id="history">111</div>
+            <div class="in" id="in"></div>
+            <div class="out" id="out">333</div>
         </div>
 
         <div class="middle">
             <ul>
-                <li>7</li>
-                <li>8</li>
-                <li>9</li>
-                <li>+</li>
-                <li>4</li>
-                <li>5</li>
-                <li>6</li>
-                <li>-</li>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>&times;</li>
-                <li>C</li>
-                <li>0</li>
-                <li>.</li>
-                <li>&divide;</li>
+                <li data-val="7">7</li>
+                <li data-val="8">8</li>
+                <li data-val="9">9</li>
+                <li data-type="+">+</li>
+                <li data-val="4">4</li>
+                <li data-val="5">5</li>
+                <li data-val="6">6</li>
+                <li data-type="-">-</li>
+                <li data-val="1">1</li>
+                <li data-val="2">2</li>
+                <li data-val="3">3</li>
+                <li data-type="*">&times;</li>
+                <li>clear</li>
+                <li data-val="0">0</li>
+                <li data-val=".">.</li>
+                <li data-type="/">&divide;</li>
             </ul>
         </div>
-        <div class="bottom">=</div>
+        <div class="bottom" data-calc="=">=</div>
     </div>
 </div>
+
+<script src="./jquery.min.js"></script>
+<script>
+    $(function () {
+        var activeCalc = [];
+        var historyCalc = [];
+        var activeNumber = '';
+
+        $('[data-val]').click(function (event) {
+            var nVal = event.target.dataset.val;
+            if (nVal === '.' && activeNumber.indexOf('.') > -1) {
+                return;
+            } else {
+                activeNumber += nVal;
+            }
+            console.log(activeNumber);
+            render();
+        });
+
+        $('[data-type]').click(function (event) {
+            var tCalc = event.target.dataset.type;
+            console.log(tCalc);
+            activeCalc.push({n: activeNumber, type: tCalc});
+            activeNumber = '';
+            console.log(activeCalc);
+        });
+
+        $('[data-calc]').click(function () {
+//            var a = '';
+//            for (var i = 0; i < activeCalc.length; i++) {}
+            var bb = [{n: 3, type: '+'}, {n: 4, type: '*'}, {n: 2, type: '='}];
+            var result = 0;
+            for (var i = 0; i < bb.length; i++) {
+
+            }
+        });
+
+        function render() {
+            $('#in').html(activeNumber);
+        }
+
+        // 进行运算符的运算
+        function opCalc(b, op, a) {
+            switch (op) {
+                case '+':
+                    return a + b;
+                    break;
+                case '-':
+                    return a - b;
+                    break;
+                case '*':
+                    return a * b;
+                    break;
+                case '/':
+                    return a / b;
+                    break;
+            }
+        }
+
+        // 判断运算符优先级
+        function priorHigher(a, b) {
+            return (a === '+' || a === '-') && (b === '*' || b === '/');
+        }
+
+        ,
+    })
+</script>
 </body>
 </html>

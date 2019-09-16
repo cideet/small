@@ -4,6 +4,7 @@
   list-style: none;
   box-sizing: border-box;
   font-family: "Arial";
+  color: #333;
 }
 .clearfix {
   clear: both;
@@ -27,7 +28,7 @@ body {
   border-radius: 3px;
 }
 .calc-container .calc-box .top {
-  padding: 0 10px;
+  padding: 0 15px;
   background-color: rgba(250, 250, 250, 0.9);
 }
 .calc-container .calc-box .top .history {
@@ -41,7 +42,7 @@ body {
 }
 .calc-container .calc-box .top .in {
   font-size: 20px;
-  color: #888;
+  color: #ccc;
   line-height: 30px;
   min-height: 30px;
   padding-top: 10px;
@@ -51,7 +52,7 @@ body {
   font-size: 20px;
   line-height: 30px;
   min-height: 30px;
-  color: #ccc;
+  color: #888;
   padding-bottom: 10px;
   text-align: right;
 }
