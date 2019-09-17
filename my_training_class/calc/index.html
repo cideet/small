@@ -8,106 +8,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <link type="text/css" rel="stylesheet" href="index.css"/>
+    <link type="text/css" rel="stylesheet" href="./css/index.css?v=8"/>
 </head>
 <body>
-<div class="calc-container">
-    <div class="calc-box">
-        <div class="top">
-            <div class="history" id="history">111</div>
-            <div class="in" id="in"></div>
-            <div class="out" id="out">333</div>
-        </div>
-
-        <div class="middle">
-            <ul>
-                <li data-val="7">7</li>
-                <li data-val="8">8</li>
-                <li data-val="9">9</li>
-                <li data-type="+">+</li>
-                <li data-val="4">4</li>
-                <li data-val="5">5</li>
-                <li data-val="6">6</li>
-                <li data-type="-">-</li>
-                <li data-val="1">1</li>
-                <li data-val="2">2</li>
-                <li data-val="3">3</li>
-                <li data-type="*">&times;</li>
-                <li>clear</li>
-                <li data-val="0">0</li>
-                <li data-val=".">.</li>
-                <li data-type="/">&divide;</li>
-            </ul>
-        </div>
-        <div class="bottom" data-calc="=">=</div>
+<div class="calculator" id="calculator">
+    <div class="top">
+        <span class="clear">C</span>
+        <div class="screen">0</div>
+    </div>
+    <div class="keys">
+        <span>7</span>
+        <span>8</span>
+        <span>9</span>
+        <span class="operator">+</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span class="operator">-</span>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span class="operator">÷</span>
+        <span>0</span>
+        <span>.</span>
+        <span class="eval">=</span>
+        <span class="operator">&times;</span>
     </div>
 </div>
 
-<script src="./jquery.min.js"></script>
+<script src="./js/jquery.min.js"></script>
 <script>
-    $(function () {
-        var activeCalc = [];
-        var historyCalc = [];
-        var activeNumber = '';
-
-        $('[data-val]').click(function (event) {
-            var nVal = event.target.dataset.val;
-            if (nVal === '.' && activeNumber.indexOf('.') > -1) {
-                return;
-            } else {
-                activeNumber += nVal;
-            }
-            console.log(activeNumber);
-            render();
-        });
-
-        $('[data-type]').click(function (event) {
-            var tCalc = event.target.dataset.type;
-            console.log(tCalc);
-            activeCalc.push({n: activeNumber, type: tCalc});
-            activeNumber = '';
-            console.log(activeCalc);
-        });
-
-        $('[data-calc]').click(function () {
-//            var a = '';
-//            for (var i = 0; i < activeCalc.length; i++) {}
-            var bb = [{n: 3, type: '+'}, {n: 4, type: '*'}, {n: 2, type: '='}];
-            var result = 0;
-            for (var i = 0; i < bb.length; i++) {
-
-            }
-        });
-
-        function render() {
-            $('#in').html(activeNumber);
-        }
-
-        // 进行运算符的运算
-        function opCalc(b, op, a) {
-            switch (op) {
-                case '+':
-                    return a + b;
-                    break;
-                case '-':
-                    return a - b;
-                    break;
-                case '*':
-                    return a * b;
-                    break;
-                case '/':
-                    return a / b;
-                    break;
-            }
-        }
-
-        // 判断运算符优先级
-        function priorHigher(a, b) {
-            return (a === '+' || a === '-') && (b === '*' || b === '/');
-        }
-
-        ,
-    })
+    document.body.addEventListener('touchstart', function () {
+    });
 </script>
 </body>
 </html>
