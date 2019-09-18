@@ -1,10 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>我的点歌系统-录音页面</title>
+  <meta charset="UTF-8">
+  <title>我的点歌系统-录音页面</title>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/recorder.js"></script>
 </head>
 <body>
 
 </body>
+<script>
+
+  var audio_context;
+  var recorder;
+
+  function startUserMedia(stream) {
+    var input = audio_context.createMediaStreamSource(stream);
+    console.log('Media stream created.');
+    recorder = new Recorder(input);
+  }
+
+  window.onload = function init() {
+    try {
+      window.AudioContext = window.AudioContext || window.webkitAudioContext;
+      navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia;
+      window.URL = window.URL || window.webkitURL;
+      audio_context = new AudioContext;
+      console.log('Audio context set up.');
+      console.log('navigator.getUserMedia ' + (navigator.getUserMedia ? 'available.' : 'not present!'));
+    } catch (e) {
+      alert('No web audio support in this browser!');
+    }
+    navigator.getUserMedia({audio: true}, startUserMedia, function (e) {
+      console.log('No live audio input: ' + e);
+    });
+
+    setTimeout(function () {
+      startRecording();
+    }, 2000)
+
+    setTimeout(function () {
+      stopRecording()
+    }, 5000)
+  };
+
+  var recorderTime = 0;
+  var recorderTimer = '';
+  function startRecording() {
+    recorder && recorder.record();
+    console.log('Recording...');
+  }
+
+  function stopRecording() {
+    recorder && recorder.stop();
+    console.log('Stopped recording.');
+    //window.location.href = 'course.html';
+    recorder && recorder.exportWAV(function (blob) {
+      console.log(blob);
+      var files = new File([blob], new Date().toISOString() + ".wav", {type: "audio/wav"});
+      console.log(files);
+      var fd = new FormData();
+      fd.append('file', files);
+      console.error(fd);
+      //return;
+      $.ajax({
+        url: 'http://api.vdouw.com/index.php/api/tool/uploadToTemp',
+        type: 'POST',
+        cache: false,
+        data: fd,
+        processData: false,
+        contentType: false,
+        dataType: "json",
+        //headers: {Authorization: 'Bearer ' + getCookie('token')},
+        beforeSend: function () {
+          //uploading = true;
+        },
+        success: function (data) {
+          var url = 'https://api.vdouw.com/temp/' + data.data;
+          console.log(url);
+          $.ajax({
+            url: 'http://api.vdouw.com/index.php/api/tool/baiduAsrByUrl?url=' + url,
+            type: 'get',
+            timeout: 2000,
+            success: function (res) {
+              console.log(res);
+            }
+          })
+        },
+        complete:function(res){
+          console.error(res)
+        }
+      });
+    });
+    recorder.clear();
+  }
+</script>
 </html>
