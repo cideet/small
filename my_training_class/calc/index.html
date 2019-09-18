@@ -45,6 +45,7 @@
         if (currentKey === 'C') {
             $('.screen').html('');
             decimalAdded = false;
+            txtToSound('清除');
         } else if (currentKey === '=') {
             var inputed = $('.screen').html();
             var lastChar = inputed[inputed.length - 1];
@@ -55,8 +56,10 @@
             if (inputed) {
                 $('.screen').html(inputed);
                 $('.screen').html(eval($('.screen').html()));
+                txtToSound('=' + $('.screen').html());
             }
         } else if (operators.indexOf(currentKey) > -1) {
+            txtToSound(currentKey);
             var inputed = $('.screen').html();
             var lastChar = inputed[inputed.length - 1];
             if (inputed !== null && operators.indexOf(lastChar) === -1) {
@@ -69,13 +72,15 @@
                 $('.screen').html(inputed.replace(/.$/, currentKey));
             }
             decimalAdded = false;
-            console.log(inputed)
+            console.log(inputed);
         } else if (currentKey === '.') {
             if (!decimalAdded) {
                 $('.screen').html($('.screen').html() + currentKey);
                 decimalAdded = true;
+                txtToSound(currentKey);
             }
         } else {
+            txtToSound(currentKey);
             $('.screen').html($('.screen').html() === '0' ? '' : $('.screen').html());
             $('.screen').html($('.screen').html() + currentKey);
         }
@@ -84,6 +89,12 @@
     document.body.addEventListener('touchstart', function () {
     });
 
+    function txtToSound(txt) {
+        txt = txt.replace(/\+/g, '加').replace(/-/g, '减').replace(/÷/g, '除以').replace(/\x/g, '乘以');
+        var a = '<audio autoplay="autoplay"><source src="https://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=' + txt + '" type="audio/mpeg"><embed height="0" width="0" src="http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=' + txt + '"></embed></source></audio>';
+        $('body').append(a);
+    }
 </script>
+
 </body>
 </html>
