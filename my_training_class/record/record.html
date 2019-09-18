@@ -64,7 +64,7 @@
       console.error(fd);
       //return;
       $.ajax({
-        url: 'http://api.vdouw.com/index.php/api/tool/uploadToTemp',
+        url: 'https://api.vdouw.com/index.php/api/tool/uploadToTemp',
         type: 'POST',
         cache: false,
         data: fd,
@@ -79,11 +79,11 @@
           var url = 'https://api.vdouw.com/temp/' + data.data;
           console.log(url);
           $.ajax({
-            url: 'http://api.vdouw.com/index.php/api/tool/baiduAsrByUrl?url=' + url,
+            url: 'https://api.vdouw.com/index.php/api/tool/baiduAsrByUrl?url=' + url,
             type: 'get',
-            timeout: 2000,
+            timeout: 20000,
             success: function (res) {
-              console.log(res);
+              alert(JSON.stringify(res));
             }
           })
         },
