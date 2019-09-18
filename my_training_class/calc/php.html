@@ -38,22 +38,70 @@
 
 <script src="./js/jquery.min.js"></script>
 <script>
-    var inputArray = [];
+    var operators = ['+', '-', 'x', '÷'];
+    var decimalAdded = false;
     $('#calculator span').click(function (e) {
-        var value = e.target.innerHTML;
-        if (value === '=') {
-            console.log(inputArray.join(''));
-            $.ajax({
-                url: 'http://127.0.0.4/index.php/api/tool/calc?exp=' + encodeURIComponent(inputArray.join('')),
-                type: 'get',
-                success: function (res, status) {
-                    console.log(res);
-                }
-            })
+        var currentKey = e.target.innerHTML;
+        if (currentKey === 'C') {
+            $('.screen').html('');
+            decimalAdded = false;
+        } else if (currentKey === '=') {
+            var inputed = $('.screen').html();
+            //var lastChar = inputed[inputed.length - 1];
+            inputed = inputed.replace(/x/g, '*').replace(/÷/g, '/');
+            if (operators.indexOf(lastChar) > -1 || lastChar === '.') {
+                inputed = inputed.replace(/.$/, '');
+            }
+            if (inputed) {
+                $('.screen').html(inputed);
+                console.log(eval($('.screen').html()))
+                $.ajax({
+                    url: 'http://127.0.0.4/index.php/api/tool/calc',
+                    data: {exp: $('.screen').html()},
+                    type: 'get',
+                    success: function (res) {
+                        $('.screen').html(res);
+                    }
+                })
+            }
+        } else if (operators.indexOf(currentKey) > -1) {
+            var inputed = $('.screen').html();
+            var lastChar = inputed[inputed.length - 1];
+            if (inputed !== null && operators.indexOf(lastChar) === -1) {
+                $('.screen').html($('.screen').html() + currentKey);
+            }
+            if (currentKey === '-' && inputed === null) {
+                $('.screen').html($('.screen').html() + currentKey);
+            }
+            if (operators.indexOf(lastChar) > -1 && inputed.length > 1) {
+                $('.screen').html(inputed.replace(/.$/, currentKey));
+            }
+            decimalAdded = false;
+            console.log(inputed)
+        } else if (currentKey === '.') {
+            if (!decimalAdded) {
+                $('.screen').html($('.screen').html() + currentKey);
+                decimalAdded = true;
+            }
         } else {
-            inputArray.push(value);
-
+            $('.screen').html($('.screen').html() + currentKey);
         }
+//        if (operators.indexOf(currentKey) > -1) {
+//            $('.screen').html(currentKey);
+//        }
+//        if (value === '=') {
+//            console.log(inputArray.join(''));
+//            $.ajax({
+//                url: 'http://127.0.0.4/index.php/api/tool/calc?exp=' + encodeURIComponent(inputArray.join('')),
+//                type: 'get',
+//                success: function (res, status) {
+//                    console.log(res);
+//                }
+//            })
+//        } else {
+//            inputArray.push(value);
+//
+//        }
     });
     //    var keys = document.querySelectorAll('#calculator span');
     //    var operators = ['+', '-', 'x', '÷'];
