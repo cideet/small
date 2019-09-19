@@ -163,6 +163,24 @@
               recLength += inputBuffer[0].length;
             }
 
+            /**
+             *sampleStep是系统的context.sampleRate/自定义sampleRate后取整的结果，这个方法实现了对单声道的*采样数据处理。
+             */
+
+            function extractSingleChannel(input) {
+              //如果此处不按比例缩短，实际输出的文件会包含sampleStep倍长度的空录音
+              var length = Math.ceil(input.length / sampleStep);
+              var result = new Float32Array(length);
+              var index = 0,
+                inputIndex = 0;
+              while (index < length) {
+                //此处是处理关键，算法就是输入的数据点每隔sampleStep距离取一个点放入result
+                result[index++] = input[inputIndex];
+                inputIndex += sampleStep;
+              }
+              return result;
+            }
+
             function exportWAV(type) {
               var buffers = [];
               for (var channel = 0; channel < numChannels; channel++) {
@@ -172,7 +190,9 @@
               if (numChannels === 2) {
                 interleaved = interleave(buffers[0], buffers[1]);
               } else {
-                interleaved = buffers[0];
+                //interleaved = buffers[0];
+                //此处是重点，可以看到对于单声道的情况是没有进行处理的，那么仿照双声道的处理方式来添加采样函数，此处改为
+                interleaved = extractSingleChannel(buffers[0]);
               }
               var dataview = encodeWAV(interleaved);
               var audioBlob = new Blob([dataview], {type: type});
