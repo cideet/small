@@ -1,95 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>计算器-PHP版</title>
-    <meta name="keywords" content=""/>
-    <meta name="description" content=""/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <link type="text/css" rel="stylesheet" href="./css/index.css?v=8"/>
+  <meta charset="UTF-8">
+  <title>计算器-PHP版</title>
+  <meta name="keywords" content=""/>
+  <meta name="description" content=""/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <link type="text/css" rel="stylesheet" href="./css/index.css?v=8"/>
 </head>
 <body>
 <div class="calculator" id="calculator">
-    <div class="top">
-        <span class="clear">C</span>
-        <div class="screen"></div>
-    </div>
-    <div class="keys">
-        <span>7</span>
-        <span>8</span>
-        <span>9</span>
-        <span class="operator">+</span>
-        <span>4</span>
-        <span>5</span>
-        <span>6</span>
-        <span class="operator">-</span>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span class="operator">x</span>
-        <span>0</span>
-        <span>.</span>
-        <span class="eval">=</span>
-        <span class="operator">÷</span>
-    </div>
+  <div class="top">
+    <span class="clear">C</span>
+    <div class="screen"></div>
+  </div>
+  <div class="keys">
+    <span>7</span>
+    <span>8</span>
+    <span>9</span>
+    <span class="operator">+</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+    <span class="operator">-</span>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span class="operator">x</span>
+    <span>0</span>
+    <span>.</span>
+    <span class="eval">=</span>
+    <span class="operator">÷</span>
+  </div>
 </div>
 
 <script src="./js/jquery.min.js"></script>
 <script>
-    var operators = ['+', '-', 'x', '÷'];
-    var decimalAdded = false;
-    $('#calculator span').click(function (e) {
-        var currentKey = e.target.innerHTML;
-        if (currentKey === 'C') {
-            $('.screen').html('');
-            decimalAdded = false;
-        } else if (currentKey === '=') {
-            var inputed = $('.screen').html();
-            var lastChar = inputed[inputed.length - 1];
-            inputed = inputed.replace(/x/g, '*').replace(/÷/g, '/');
-            if (operators.indexOf(lastChar) > -1 || lastChar === '.') {
-                inputed = inputed.replace(/.$/, '');
-            }
-            if (inputed) {
-                $('.screen').html(inputed);
-                $.ajax({
-                    url: 'http://127.0.0.4/index.php/api/tool/calc',
-                    data: {exp: $('.screen').html()},
-                    type: 'get',
-                    success: function (res) {
-                        $('.screen').html(res.data);
-                    }
-                })
-            }
-        } else if (operators.indexOf(currentKey) > -1) {
-            var inputed = $('.screen').html();
-            var lastChar = inputed[inputed.length - 1];
-            if (inputed !== null && operators.indexOf(lastChar) === -1) {
-                $('.screen').html($('.screen').html() + currentKey);
-            }
-            if (currentKey === '-' && inputed === null) {
-                $('.screen').html($('.screen').html() + currentKey);
-            }
-            if (operators.indexOf(lastChar) > -1 && inputed.length > 1) {
-                $('.screen').html(inputed.replace(/.$/, currentKey));
-            }
-            decimalAdded = false;
-            console.log(inputed)
-        } else if (currentKey === '.') {
-            if (!decimalAdded) {
-                $('.screen').html($('.screen').html() + currentKey);
-                decimalAdded = true;
-            }
-        } else {
-            $('.screen').html($('.screen').html() === '0' ? '' : $('.screen').html());
-            $('.screen').html($('.screen').html() + currentKey);
-        }
-    });
+  var operators = ['+', '-', 'x', '÷'];
+  var decimalAdded = false;
+  $('#calculator span').click(function (e) {
+    var currentKey = e.target.innerHTML;
+    if (currentKey === 'C') {
+      $('.screen').html('');
+      decimalAdded = false;
+    } else if (currentKey === '=') {
+      var inputed = $('.screen').html();
+      var lastChar = inputed[inputed.length - 1];
+      inputed = inputed.replace(/x/g, '*').replace(/÷/g, '/');
+      if (operators.indexOf(lastChar) > -1 || lastChar === '.') {
+        inputed = inputed.replace(/.$/, '');
+      }
+      if (inputed) {
+        $('.screen').html(inputed);
+        $.ajax({
+          url: 'http://127.0.0.4/index.php/api/tool/calc',
+          data: {exp: $('.screen').html()},
+          type: 'get',
+          success: function (res) {
+            $('.screen').html(res.data);
+          }
+        })
+      }
+    } else if (operators.indexOf(currentKey) > -1) {
+      var inputed = $('.screen').html();
+      var lastChar = inputed[inputed.length - 1];
+      if (inputed !== null && operators.indexOf(lastChar) === -1) {
+        $('.screen').html($('.screen').html() + currentKey);
+      }
+      if (currentKey === '-' && inputed === null) {
+        $('.screen').html($('.screen').html() + currentKey);
+      }
+      if (operators.indexOf(lastChar) > -1 && inputed.length > 1) {
+        $('.screen').html(inputed.replace(/.$/, currentKey));
+      }
+      decimalAdded = false;
+      console.log(inputed)
+    } else if (currentKey === '.') {
+      if (!decimalAdded) {
+        $('.screen').html($('.screen').html() + currentKey);
+        decimalAdded = true;
+      }
+    } else {
+      $('.screen').html($('.screen').html() === '0' ? '' : $('.screen').html());
+      $('.screen').html($('.screen').html() + currentKey);
+    }
+  });
 
-    document.body.addEventListener('touchstart', function () {
-    });
+  document.body.addEventListener('touchstart', function () {
+  });
 
 </script>
 </body>

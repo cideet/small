@@ -1,99 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>计算器-jQuery版</title>
-    <meta name="keywords" content=""/>
-    <meta name="description" content=""/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <link type="text/css" rel="stylesheet" href="./css/index.css?v=8"/>
+  <meta charset="UTF-8">
+  <title>计算器-jQuery版</title>
+  <meta name="keywords" content=""/>
+  <meta name="description" content=""/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <link type="text/css" rel="stylesheet" href="./css/index.css?v=8"/>
 </head>
 <body>
 <div class="calculator" id="calculator">
-    <div class="top">
-        <span class="clear">C</span>
-        <div class="screen"></div>
-    </div>
-    <div class="keys">
-        <span>7</span>
-        <span>8</span>
-        <span>9</span>
-        <span class="operator">+</span>
-        <span>4</span>
-        <span>5</span>
-        <span>6</span>
-        <span class="operator">-</span>
-        <span>1</span>
-        <span>2</span>
-        <span>3</span>
-        <span class="operator">x</span>
-        <span>0</span>
-        <span>.</span>
-        <span class="eval">=</span>
-        <span class="operator">÷</span>
-    </div>
+  <div class="top">
+    <span class="clear">C</span>
+    <div class="screen"></div>
+  </div>
+  <div class="keys">
+    <span>7</span>
+    <span>8</span>
+    <span>9</span>
+    <span class="operator">+</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+    <span class="operator">-</span>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span class="operator">x</span>
+    <span>0</span>
+    <span>.</span>
+    <span class="eval">=</span>
+    <span class="operator">÷</span>
+  </div>
 </div>
 
 <script src="./js/jquery.min.js"></script>
 <script>
-    var operators = ['+', '-', 'x', '÷'];
-    var decimalAdded = false;
-    $('#calculator span').click(function (e) {
-        var currentKey = e.target.innerHTML;
-        if (currentKey === 'C') {
-            $('.screen').html('');
-            decimalAdded = false;
-            txtToSound('清除');
-        } else if (currentKey === '=') {
-            var inputed = $('.screen').html();
-            var lastChar = inputed[inputed.length - 1];
-            inputed = inputed.replace(/x/g, '*').replace(/÷/g, '/');
-            if (operators.indexOf(lastChar) > -1 || lastChar === '.') {
-                inputed = inputed.replace(/.$/, '');
-            }
-            if (inputed) {
-                $('.screen').html(inputed);
-                $('.screen').html(eval($('.screen').html()));
-                txtToSound('=' + $('.screen').html());
-            }
-        } else if (operators.indexOf(currentKey) > -1) {
-            txtToSound(currentKey);
-            var inputed = $('.screen').html();
-            var lastChar = inputed[inputed.length - 1];
-            if (inputed !== null && operators.indexOf(lastChar) === -1) {
-                $('.screen').html($('.screen').html() + currentKey);
-            }
-            if (currentKey === '-' && inputed === null) {
-                $('.screen').html($('.screen').html() + currentKey);
-            }
-            if (operators.indexOf(lastChar) > -1 && inputed.length > 1) {
-                $('.screen').html(inputed.replace(/.$/, currentKey));
-            }
-            decimalAdded = false;
-            console.log(inputed);
-        } else if (currentKey === '.') {
-            if (!decimalAdded) {
-                $('.screen').html($('.screen').html() + currentKey);
-                decimalAdded = true;
-                txtToSound('点');
-            }
-        } else {
-            txtToSound(currentKey);
-            $('.screen').html($('.screen').html() === '0' ? '' : $('.screen').html());
-            $('.screen').html($('.screen').html() + currentKey);
-        }
-    });
-
-    document.body.addEventListener('touchstart', function () {
-    });
-
-    function txtToSound(txt) {
-        txt = txt.replace(/\+/g, '加').replace(/-/g, '减').replace(/÷/g, '除以').replace(/\x/g, '乘以');
-        var a = '<audio autoplay="autoplay"><source src="https://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=' + txt + '" type="audio/mpeg"><embed height="0" width="0" src="http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=' + txt + '"></embed></source></audio>';
-        $('body').append(a);
+  var operators = ['+', '-', 'x', '÷'];
+  var decimalAdded = false;
+  $('#calculator span').click(function (e) {
+    var currentKey = e.target.innerHTML;
+    if (currentKey === 'C') {
+      $('.screen').html('');
+      decimalAdded = false;
+      txtToSound('清除');
+    } else if (currentKey === '=') {
+      var inputed = $('.screen').html();
+      var lastChar = inputed[inputed.length - 1];
+      inputed = inputed.replace(/x/g, '*').replace(/÷/g, '/');
+      if (operators.indexOf(lastChar) > -1 || lastChar === '.') {
+        inputed = inputed.replace(/.$/, '');
+      }
+      if (inputed) {
+        $('.screen').html(inputed);
+        $('.screen').html(eval($('.screen').html()));
+        txtToSound('=' + $('.screen').html(), true);
+      }
+    } else if (operators.indexOf(currentKey) > -1) {
+      txtToSound(currentKey);
+      var inputed = $('.screen').html();
+      var lastChar = inputed[inputed.length - 1];
+      if (inputed !== null && operators.indexOf(lastChar) === -1) {
+        $('.screen').html($('.screen').html() + currentKey);
+      }
+      if (currentKey === '-' && inputed === null) {
+        $('.screen').html($('.screen').html() + currentKey);
+      }
+      if (operators.indexOf(lastChar) > -1 && inputed.length > 1) {
+        $('.screen').html(inputed.replace(/.$/, currentKey));
+      }
+      decimalAdded = false;
+      console.log(inputed);
+    } else if (currentKey === '.') {
+      if (!decimalAdded) {
+        $('.screen').html($('.screen').html() + currentKey);
+        decimalAdded = true;
+        txtToSound('点');
+      }
+    } else {
+      txtToSound(currentKey);
+      $('.screen').html($('.screen').html() === '0' ? '' : $('.screen').html());
+      $('.screen').html($('.screen').html() + currentKey);
     }
+  });
+
+  document.body.addEventListener('touchstart', function () {
+  });
+
+  function txtToSound(txt, isResult) {
+    txt = txt.replace(/\+/g, '加').replace(/÷/g, '除以').replace(/\x/g, '乘以');
+    if (!isResult) {
+      txt = txt.replace(/-/g, '减');
+    } else {
+      txt = txt.replace(/-/g, '负');
+    }
+    var a = '<audio autoplay="autoplay"><source src="https://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=' + txt + '" type="audio/mpeg"><embed height="0" width="0" src="http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=2&text=' + txt + '"></embed></source></audio>';
+    $('body').append(a);
+  }
 </script>
 
 </body>
