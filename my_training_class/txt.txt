@@ -1,3 +1,6 @@
-https://www.cnblogs.com/imwtr/p/5970865.html
 
+计算器原版
 http://www.jq22.com/demo/jsq2/
+
+JS使用PCM录音格式进行百度语音识别
+http://dfei.vip/post/203.html
