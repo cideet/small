@@ -57,7 +57,7 @@
     //window.location.href = 'course.html';
     recorder && recorder.exportWAV(function (blob) {
       console.log(blob);
-      var files = new File([blob], new Date().toISOString() + ".wav", {type: "audio/wav"});
+      var files = new File([blob], new Date().toISOString() + ".mp3", {type: "audio/mp3"});
       console.log(files);
       var fd = new FormData();
       fd.append('file', files);
