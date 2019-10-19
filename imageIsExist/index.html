@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <title>Title</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+</head>
+<body>
+<script>
+    var img = new Image();
+    img.src = 'http://index.vdouw.com/skin/vdouw/images/1920x500.jpg';
+    img.onload = function (e) {
+        console.log(img.width);
+        if (img.width && img.height) {
+            alert('图片1正常')
+        }else{
+			alert('图片1不正常');
+		}
+        console.log(JSON.stringify(e));  //{"isTrusted":true}
+    };
+	
+	var img2 = new Image();
+    img2.src = 'http://index.vdouw.com/skin/vdouw/images/1920x500_222.jpg';
+	alert('不正常的图片,img.onload的回调不返回');
+    img2.onload = function (e) {
+        console.log(img2.width);
+        if (img2.width && img2.height) {
+            alert('图片2不正常')
+        }else{
+			alert('图片2不正常');
+		}
+        console.log(JSON.stringify(e));  //{"isTrusted":true}
+    };
+//    img.onerror = function (e) {
+//        alert('onerror')
+//        console.log(JSON.stringify(e));
+//    }
+</script>
+</body>
+</html>
