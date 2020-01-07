@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <title>图片没有使用预加载的效果</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <script src="jquery.js"></script>
+</head>
+<body>
+<div class="box">
+    <img src="http://pic1.win4000.com/pic/9/a3/7e591391054.jpg" width="800"/>
+</div>
+<p>
+    <span data-control="prev">上一页</span>
+    <span data-control="next">下一页</span>
+</p>
+<h1>这是没有预加载的页面</h1>
+<h3></h3>
+<script>
+    var imgs = [
+        'http://pic1.win4000.com/pic/9/a3/7e591391054.jpg',
+        'http://pic1.win4000.com/pic/9/a3/7e591391055.jpg',
+        'http://pic1.win4000.com/pic/9/a3/7e591391056.jpg',
+        'http://pic1.win4000.com/pic/9/a3/7e591391056.jpg',
+        'http://pic1.win4000.com/pic/9/a3/7e591391058.jpg',
+        'http://pic1.win4000.com/pic/9/a3/7e591391059.jpg'
+    ];
+    var index = 0;
+    var len = imgs.length;
+    $('span').on('click', function () {
+        if ($(this).attr('data-control') == 'prev') {
+            index1 = Math.max(0, --index1);
+        } else {
+            index1 = Math.min(len - 1, ++index1);
+        }
+        $('h3').html((index1 + 1) + "/" + len);
+        $('img').attr('src', imgs[index1]);
+    });
+</script>
+</body>
+</html>
